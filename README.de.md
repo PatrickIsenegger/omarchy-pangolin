@@ -7,7 +7,7 @@
 Community-Plugin für Verbindungen, öffentliche und private Ressourcen sowie Web-Apps. Die Oberfläche übernimmt das aktive Omarchy-Theme. **Community-Release**, Oberfläche zunächst Englisch.
 
 <p align="center">
-  <a href="https://github.com/PatrickIsenegger/omarchy-pangolin/releases/latest"><img src="assets/badges/release.svg" alt="Release: 0.1.0"></a>
+  <a href="https://github.com/PatrickIsenegger/omarchy-pangolin/releases/latest"><img src="assets/badges/release.svg" alt="Aktuelles reguläres Release"></a>
   <a href="LICENSE"><img src="assets/badges/license.svg" alt="Lizenz: MIT"></a>
   <a href="docs/compatibility.md"><img src="assets/badges/hosting.svg" alt="Hosting: Cloud und Self-Hosting"></a>
   <a href="docs/graphics.md"><img src="assets/badges/theme.svg" alt="Stil: Omarchy-Theme"></a>

@@ -7,7 +7,7 @@
 **Your connections, close at hand.** A community bar plugin for Pangolin connections, resources and web apps — painted in your active Omarchy theme.
 
 <p align="center">
-  <a href="https://github.com/PatrickIsenegger/omarchy-pangolin/releases/latest"><img src="assets/badges/release.svg" alt="Release: 0.1.0"></a>
+  <a href="https://github.com/PatrickIsenegger/omarchy-pangolin/releases/latest"><img src="assets/badges/release.svg" alt="Latest regular release"></a>
   <a href="LICENSE"><img src="assets/badges/license.svg" alt="License: MIT"></a>
   <a href="docs/compatibility.md"><img src="assets/badges/hosting.svg" alt="Hosting: Cloud and self-hosted"></a>
   <a href="docs/graphics.md"><img src="assets/badges/theme.svg" alt="Style: Omarchy theme"></a>
