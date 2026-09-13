@@ -13,7 +13,7 @@ A regular release does not expand the [tested compatibility scope](compatibility
 ## Prepare a release
 
 ```bash
-python3 tools/bump_version.py 0.1.1
+python3 tools/bump_version.py 0.1.2
 ```
 
 Choose the actual next version, update the changelog, regenerate synthetic previews and run backend, QML, plugin and release checks. Inspect publishable files for private data before pushing. Publish the matching GitHub Release as the latest regular release.

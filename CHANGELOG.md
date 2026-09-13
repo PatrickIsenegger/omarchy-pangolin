@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 — 2026-09-13
+
+- Handle malformed account fields and API response envelopes with clear user-facing errors.
+- Add a root-level synthetic preview and document community marketplace submission requirements.
+- Clarify the live-theme API requirements used by the plugin.
+
 ## 0.1.0 — 2026-09-13
 
 - Document the installation boundary, official CLI setup, dependency checks and Arch package mapping.

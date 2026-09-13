@@ -2,6 +2,8 @@
 
 Development checks target Omarchy 4.0.3-1 / Quattro, Python 3.10+, Pangolin CLI 0.16.x and the Pangolin 1.21.x API shape. This is not a claim that every combination has been integration-tested.
 
+Theme integration also requires `Color.currentThemePath`, `Color.shellValuesChanged`, and `Quickshell.Io.FileView` from the installed Omarchy/Quickshell API.
+
 Expected local interface: Unix socket `/run/olm.sock`, `GET /status`, `POST /exit`. Status must provide boolean `connected`, `registered` and `terminated` fields.
 
 Expected account layout: Pangolin CLI `accounts.json` with `activeuserid` and an `accounts` map. Session tokens are used only in request headers. HTTPS servers are supported; HTTP control planes are deliberately unsupported in this release.

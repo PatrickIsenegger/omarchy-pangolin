@@ -57,15 +57,19 @@ def account():
     try:
         data = json.loads(ACCOUNTS.read_text())
         a = data['accounts'][data['activeuserid']]
-        host = a['host'].rstrip('/')
+        host_value = a['host']
+        token = a['sessionToken']
+        if not isinstance(host_value, str) or not isinstance(token, str):
+            raise ValueError()
+        host = host_value.rstrip('/')
         if '://' not in host:
             host = 'https://' + host
         if host.endswith('/api/v1'):
             host = host[:-7]
-        if not web_url(host) or urlsplit(host).scheme != 'https' or urlsplit(host).query or urlsplit(host).fragment or not a['sessionToken'] or not a['orgId']:
+        if not web_url(host) or urlsplit(host).scheme != 'https' or urlsplit(host).query or urlsplit(host).fragment or not token or not a['orgId']:
             raise ValueError()
-        return dict(host=host, token=a['sessionToken'], org=str(a['orgId']))
-    except (OSError, ValueError, KeyError, TypeError):
+        return dict(host=host, token=token, org=str(a['orgId']))
+    except (OSError, ValueError, KeyError, TypeError, AttributeError):
         raise UserError('Sign in with pangolin login and select an organization first.')
 
 
@@ -80,7 +84,7 @@ def api(a, path):
     try:
         with urllib.request.build_opener(NoRedirect()).open(req, timeout=4) as r:
             data = json.load(r)
-        if data.get('success') is not True:
+        if not isinstance(data, dict) or data.get('success') is not True or not isinstance(data.get('data'), dict):
             raise ValueError()
         return data['data']
     except urllib.error.HTTPError as e:

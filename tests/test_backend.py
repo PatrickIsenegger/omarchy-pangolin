@@ -22,6 +22,16 @@ class BackendTests(unittest.TestCase):
                 with patch.object(b, 'ACCOUNTS', path):
                     self.assertEqual(b.account(), {'host':expected, 'org':'demo-org', 'token':'synthetic-session'})
 
+    def test_malformed_account_types_are_user_errors(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp)/'accounts.json'
+            path.write_text(json.dumps({'activeuserid':'demo', 'accounts':{'demo':{
+                'host': ['https://app.pangolin.net'], 'orgId':'demo-org',
+                'sessionToken':'synthetic-session'}}}))
+            with patch.object(b, 'ACCOUNTS', path):
+                with self.assertRaises(b.UserError):
+                    b.account()
+
     def test_api_uses_selected_control_plane(self):
         for host in ['https://app.pangolin.net', 'https://gateway.example.com']:
             from unittest.mock import MagicMock
@@ -33,6 +43,16 @@ class BackendTests(unittest.TestCase):
             request = opener.open.call_args.args[0]
             self.assertEqual(request.full_url, host+'/api/v1/org/demo-org/launcher/resources')
             self.assertEqual(request.get_header('Cookie'), 'p_session_token=synthetic-session')
+
+    def test_malformed_api_envelopes_are_user_errors(self):
+        from unittest.mock import MagicMock
+        import io
+        for payload in [b'[]', b'{"success":true,"data":[]}']:
+            opener = MagicMock()
+            opener.open.return_value.__enter__.return_value = io.BytesIO(payload)
+            with patch.object(b.urllib.request, 'build_opener', return_value=opener):
+                with self.assertRaises(b.UserError):
+                    b.api({'host':'https://app.pangolin.net','org':'demo-org','token':'synthetic-session'}, '/launcher/resources')
 
     def test_status_semantics(self):
         d=dict(connected=True,registered=True,terminated=False,peers={})

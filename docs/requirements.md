@@ -9,7 +9,7 @@ client separately.
 ## Required
 
 - Omarchy Quattro with the Quickshell plugin API used by this widget
-  (`Color.popups`, `Ui.Panel` and `KeyboardPanel`).
+  (`Color.popups`, `Ui.Panel` and `KeyboardPanel`), including `Color.currentThemePath`, `Color.shellValuesChanged`, and `Quickshell.Io.FileView` for live theme colors.
 - Python 3.10 or newer (the plugin uses only Python's standard library; no
   `pip` packages are needed).
 - `timeout`, `omarchy`, `xdg-open` and `wl-copy` on `PATH`.

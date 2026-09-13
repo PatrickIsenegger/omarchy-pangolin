@@ -14,6 +14,7 @@ A small community plugin for Pangolin connections, resources and web apps.
 | [Troubleshooting](troubleshooting.md) | Connection, DNS, resource and app problems |
 | [Plugin ID migration](migration.md) | Move an older installation to `community.pangolin` |
 | [Releases and rollback](releases.md) | Versions, updates and choosing a previous release |
+| [Marketplace submission](publishing.md) | Directory listing process and proposed metadata |
 | [Changelog](../CHANGELOG.md) | Changes in each version |
 
 The plugin's **? Help** button opens this page. It does not include your server, resource names, account or credentials in the link. GitHub requires internet access; these Markdown files are also included in the installed plugin checkout under `docs/`.
