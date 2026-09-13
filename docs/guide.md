@@ -33,3 +33,11 @@ The **⋮ menu**, also available by right-clicking an enabled resource, offers o
 Tab navigates buttons; Enter/Space activates them. Escape dismisses an open menu or the panel. Hover explanations also work for unavailable actions. Demo mode disables real actions.
 
 See [troubleshooting](troubleshooting.md) for failures and [releases](releases.md) for updates and rollback. Share only synthetic resources and redacted errors in issues, never credentials or private URLs.
+
+## Panel command
+
+```bash
+omarchy-shell shell toggle community.pangolin
+```
+
+Toggles the enabled plugin panel without changing the connection. Suitable for a terminal or a keyboard shortcut. If the shell is not running, start it first; if the ID is unknown, check plugin installation and enablement.

@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "id": "community.pangolin",
   "name": "Pangolin for Omarchy",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "PatrickIsenegger",
-  "description": "Community Pangolin connections, resources and web apps. Follows your Omarchy theme.",
+  "description": "Pangolin network connectivity: VPN status, proxy resources and web-app shortcuts for Cloud and self-hosted servers.",
   "kinds": [
     "bar-widget"
   ],

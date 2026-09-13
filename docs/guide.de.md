@@ -41,3 +41,11 @@ Mit Tab durch die Schaltflächen navigieren, mit Enter/Leertaste aktivieren. Esc
 Bei gekürzten Namen oder unklaren Zielen zuerst den Hover-Hinweis prüfen. Wenn eine App fehlt, Ressourcen aktualisieren. Bei internen Verbindungsproblemen Status, DNS und konfigurierte URL prüfen. Weitere Schritte: [Fehlerbehebung](troubleshooting.md).
 
 Bitte nur erfundene Ressourcen und bereinigte Fehlermeldungen in GitHub-Issues verwenden; keine Zugangsdaten, privaten URLs oder Kontodateien veröffentlichen.
+
+## Panel command
+
+```bash
+omarchy-shell shell toggle community.pangolin
+```
+
+Öffnet oder schließt das aktivierte Plugin, ohne die Verbindung zu ändern. Geeignet für Terminal und Tastenkombinationen. Bei „not running“ die Omarchy-Shell starten; bei unbekannter Kennung Installation und Aktivierung prüfen.

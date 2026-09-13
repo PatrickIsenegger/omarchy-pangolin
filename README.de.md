@@ -4,7 +4,7 @@
 
 # Pangolin für Omarchy
 
-Community-Plugin für Verbindungen, öffentliche und private Ressourcen sowie Web-Apps. Die Oberfläche übernimmt das aktive Omarchy-Theme. **Community-Release**, Oberfläche zunächst Englisch.
+Community-Plugin für Pangolin-Netzwerkzugriff, VPN-Verbindungsstatus, öffentliche und private Ressourcen sowie Web-Apps. Die Oberfläche übernimmt das aktive Omarchy-Theme. **Community-Release**, Oberfläche zunächst Englisch.
 
 <p align="center">
   <a href="https://github.com/PatrickIsenegger/omarchy-pangolin/releases/latest"><img src="assets/badges/release.svg" alt="Aktuelles reguläres Release"></a>
@@ -47,6 +47,15 @@ Pangolin-CLI installieren. Für Pangolin Cloud mit `pangolin login app.pangolin.
 Eine bestehende Installation mit der alten Kennung wird über die [einmalige Migration](docs/migration.md) umgestellt; Position und Einstellungen bleiben erhalten.
 
 ## Bedienung
+
+Panel per Terminal öffnen oder schließen:
+
+```bash
+omarchy-shell shell toggle community.pangolin
+```
+
+Der Befehl eignet sich auch für eine Tastenkombination. Er öffnet nur das Panel und verändert die VPN-Verbindung nicht. Die Omarchy-Shell muss laufen und das Plugin aktiviert sein.
+
 
 Die kompakte Ressourcenliste zeigt nur Symbol und Name: Fenster mit Häkchen = installierte App, Globus = Browser-Link, überlappende Blätter = Host-Adresse kopieren. Apps erhalten eine dezente, flache Tönung. Hover-Infos erklären Ziel und Voraussetzungen.
 

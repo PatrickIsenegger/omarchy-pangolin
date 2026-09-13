@@ -1,3 +1,3 @@
 .pragma library
 // Generated from manifest.json by tools/bump_version.py.
-var current = "0.1.1"
+var current = "0.1.2"

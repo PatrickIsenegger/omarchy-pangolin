@@ -16,8 +16,10 @@ Keep the plugin code and releases in this repository. Submit a directory listing
 | Repository | `https://github.com/PatrickIsenegger/omarchy-pangolin` |
 | Plugin ID | `community.pangolin` |
 | Category | `System` |
-| Tags | `bar`, `launcher`, `security` |
+| Tags | `bar`, `launcher`, `system` |
 | Preview | Root `preview.png`, illustrated overview; actual UI screenshots in README |
+
+Suggested missing tag: **connectivity**. It describes remote network access and connection state; this plugin is not a general metrics or availability-monitoring dashboard. The current marketplace tag vocabulary does not include connectivity or monitoring. Its Explore graph includes a Network & VPN group derived from names, descriptions and tags. [Explorer implementation](https://github.com/omacom/omarchy-plugin-marketplace/blob/main/scripts/build-explorer-data.mjs).
 
 The ID and repository were not found in the public catalog during this check. Recheck before submitting; availability is not reserved by this document.
 

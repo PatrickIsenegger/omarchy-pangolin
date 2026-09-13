@@ -4,7 +4,7 @@
 
 # Pangolin for Omarchy
 
-**Your connections, close at hand.** A community bar plugin for Pangolin connections, resources and web apps — painted in your active Omarchy theme.
+**Your connections, close at hand.** A community bar plugin for Pangolin network connectivity, VPN connection status, proxy resources and web-app shortcuts — painted in your active Omarchy theme.
 
 <p align="center">
   <a href="https://github.com/PatrickIsenegger/omarchy-pangolin/releases/latest"><img src="assets/badges/release.svg" alt="Latest regular release"></a>
@@ -96,6 +96,15 @@ The plugin uses that active account. Connect from the panel; any privilege promp
 The plugin ID is `community.pangolin`. **Updating an older `patrick.pangolin` installation? Follow the [one-time migration](docs/migration.md) to preserve its position and settings.** Omarchy will not overwrite an existing installation with that ID. Back up an existing custom copy and its configuration before migrating; do not delete it blindly.
 
 ## Use
+
+Open or close the enabled plugin panel from a terminal:
+
+```bash
+omarchy-shell shell toggle community.pangolin
+```
+
+The same command can be assigned to a keyboard shortcut. It opens the panel only; it does not connect or disconnect Pangolin. Omarchy's shell must be running and the plugin enabled.
+
 
 Resources use a compact single-line layout: a **checked window** identifies an installed app, a **globe** a browser link, and **overlapping sheets** an address-only resource. App tiles have a subtle flat tint; there are no repeated type labels or resource watercolor fills. Hover or focus a resource for its full name, target and requirements.
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 — 2026-09-13
+
+- Clarify network connectivity, VPN status and proxy-resource discovery in listing metadata.
+- Document the existing shell command for opening the plugin from a terminal or keyboard shortcut.
+- Align the manifest, panel version, release badge and previews with this release.
+
 ## 0.1.1 — 2026-09-13
 
 - Handle malformed account fields and API response envelopes with clear user-facing errors.
