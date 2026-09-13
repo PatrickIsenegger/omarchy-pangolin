@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import qs.Commons
+import "Version.js" as Version
 
 FocusScope {
   id: view
@@ -25,15 +26,23 @@ FocusScope {
       id: content
       width: parent.width; spacing: Style.space(10)
       Rectangle {
-        width: parent.width; height: Style.space(64); radius: Style.space(12)
-        color: Qt.rgba(view.accent.r, view.accent.g, view.accent.b, 0.10)
-        border.color: Qt.rgba(view.accent.r, view.accent.g, view.accent.b, 0.22)
+        width: parent.width; height: Style.space(100); radius: Style.space(12)
+        color: Qt.rgba(view.ink.r, view.ink.g, view.ink.b, 0.025)
+        border.color: Qt.rgba(view.accent.r, view.accent.g, view.accent.b, 0.17)
+        clip: true
+        Wash { anchors.fill: parent; anchors.margins: -Style.space(12); pigment: view.accent; shade: view.ink; moving: control.healthy && control.opened }
         RowLayout {
-          anchors.fill: parent; anchors.margins: Style.space(10); spacing: Style.space(10)
-          Mark { id: mark; Layout.preferredWidth: Style.space(34); Layout.preferredHeight: Style.space(34); ink: control.statusColor; connected: control.healthy && control.opened }
+          anchors.fill: parent; anchors.margins: Style.space(12); spacing: Style.space(12)
+          Item {
+            Layout.preferredWidth: Style.space(56); Layout.preferredHeight: Style.space(64)
+            Rectangle { anchors.centerIn: parent; width: Style.space(53); height: width; radius: width/2; color: "transparent"; border.color: Qt.rgba(view.accent.r, view.accent.g, view.accent.b, 0.22) }
+            Mark { id: mark; anchors.centerIn: parent; width: Style.space(40); height: width; ink: control.statusColor; connected: control.healthy && control.opened; ambient: true }
+            Rectangle { width: Style.space(6); height: width; radius: width/2; x: Style.space(43); y: Style.space(7); color: control.stale || control.status.state === "unknown" ? "transparent" : control.dotColor; border.width: 1; border.color: control.dotColor }
+          }
           Column {
-            Layout.fillWidth: true; Layout.minimumWidth: 0; spacing: 4
-            Label { text: "Pangolin"; font.bold: true; font.pixelSize: Style.font.body + 2 }
+            Layout.fillWidth: true; Layout.minimumWidth: 0; spacing: 3
+            Label { text: "YOUR CONNECTIONS"; color: view.muted; font.pixelSize: Style.font.caption - 3; font.letterSpacing: 1.4 }
+            Label { text: "Pangolin"; font.family: "serif"; font.pixelSize: Style.font.body + 12 }
             Label { width: parent.width; text: (control.healthy ? "●  " : "◇  ") + control.title; color: control.statusColor; elide: Text.ElideRight }
           }
           Action { text: "×"; Accessible.name: "Close panel"; onClicked: control.close() }
@@ -41,13 +50,13 @@ FocusScope {
       }
       RowLayout {
         width: parent.width
-        Label { Layout.fillWidth: true; text: "PUBLIC RESOURCES"; color: view.muted }
+        Label { Layout.fillWidth: true; text: "Public resources  ·  " + view.externalItems.length; color: view.muted }
         Action { visible: view.externalItems.length > 6; text: view.all ? "Less" : "All " + view.externalItems.length; onClicked: view.all = !view.all }
       }
       ResourceGrid { resources: view.all ? view.externalItems : view.externalItems.slice(0, 6); compact: false }
       RowLayout {
         width: parent.width
-        Label { Layout.fillWidth: true; text: "PRIVATE RESOURCES"; color: view.internalAccent }
+        Label { Layout.fillWidth: true; text: "Private resources  ·  " + view.internalItems.length; color: view.internalAccent }
         Action { text: "↻"; Accessible.name: "Refresh resources"; enabled: !control.loading; onClicked: control.loadResources() }
       }
       ResourceGrid { resources: view.internalItems; compact: true }
@@ -76,7 +85,7 @@ FocusScope {
         }
       }
       Label { width: parent.width; visible: !!control.actionError; text: control.actionError; wrapMode: Text.WordWrap; color: Color.urgent }
-      Label { width: parent.width; text: "Community plugin · 0.1.0-beta.3" + (control.demo ? " · DEMO" : ""); color: view.muted; horizontalAlignment: Text.AlignHCenter; font.pixelSize: Style.font.caption - 1 }
+      Label { width: parent.width; text: "Community · " + Version.current + (control.demo ? " · DEMO" : ""); color: view.muted; horizontalAlignment: Text.AlignHCenter; font.pixelSize: Style.font.caption - 1 }
     }
   }
   component ResourceGrid: Grid {
@@ -143,10 +152,17 @@ FocusScope {
     activeFocusOnTab: true; hoverEnabled: true
     opacity: enabled || control.demo ? 1 : 0.48
     background: Rectangle {
-      radius: Style.space(7)
-      color: action.primary ? Qt.rgba(action.tint.r,action.tint.g,action.tint.b,action.hovered ? 0.22 : 0.11) : Qt.rgba(view.ink.r,view.ink.g,view.ink.b,action.hovered ? 0.1 : 0.04)
+      radius: Style.space(9)
+      clip: true
+      color: Qt.rgba(view.ink.r,view.ink.g,view.ink.b,action.hovered ? 0.065 : 0.025)
       border.width: action.activeFocus ? 2 : 1
-      border.color: action.activeFocus ? action.tint : Qt.rgba(action.tint.r,action.tint.g,action.tint.b,0.20)
+      border.color: action.activeFocus ? action.tint : Qt.rgba(action.tint.r,action.tint.g,action.tint.b,0.16)
+      Wash {
+        anchors.fill: parent; anchors.margins: -4
+        visible: action.primary
+        pigment: action.tint; shade: view.ink
+        opacity: action.hovered ? 0.95 : 0.62
+      }
     }
     contentItem: Label { text: action.text; color: action.primary ? action.tint : view.ink; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight }
   }

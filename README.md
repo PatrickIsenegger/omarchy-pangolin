@@ -1,24 +1,30 @@
+<p align="center">
+  <a href="https://patrickisenegger.com"><img src="assets/readme-hero.png" alt="Pangolin for Omarchy — an original watercolor pangolin beside a laptop" width="100%"></a>
+</p>
+
 # Pangolin for Omarchy
 
-A community bar plugin for Pangolin connections, public and private resources, and web apps. Follows your active Omarchy theme.
+**Your connections, close at hand.** A community bar plugin for Pangolin connections, resources and web apps — painted in your active Omarchy theme.
 
-**0.1.0-beta.3 · Community beta · English UI** · [Deutsch](README.de.md)
+[![Version](assets/badges/version.svg)](https://github.com/PatrickIsenegger/omarchy-pangolin/releases)
+[![License: MIT](assets/badges/license.svg)](LICENSE)
+[![Hosting: Cloud and self-hosted](assets/badges/hosting.svg)](docs/compatibility.md)
+[![Style: Omarchy theme](assets/badges/theme.svg)](docs/graphics.md)
 
-![Dark and light previews with synthetic demo resources](assets/preview.png)
+[Install](#install) · [Configure](docs/configuration.md) · [Releases](https://github.com/PatrickIsenegger/omarchy-pangolin/releases) · [Deutsch](README.de.md) · [Patrick Isenegger ↗](https://patrickisenegger.com)
 
-Independent community project. Not an official Pangolin or Omarchy product. All examples and preview resources are synthetic.
+![The real plugin UI in two demonstration themes; all resources are fictional](assets/preview.png)
 
-## Features
+## A small panel for everyday access
 
-- Connect and disconnect through the installed Pangolin CLI.
-- Honest local tunnel status; a registered client may still connect sites on demand.
-- Authorized public and private resource discovery from the active account.
-- Compact private-resource tiles; HTTP(S) links and host-address copying.
-- Install web resources as Omarchy web apps and open existing matching apps.
-- Theme colors for text, accents, surfaces and errors; no hardcoded product palette.
-- Theme-green connection dot; theme warning/error colors and a hollow unknown state.
-- Subtle SVG breathing in the bar only while a fresh connection is confirmed; the panel pulses on status samples.
-- HTTPS diagnosis, configuration shortcut and shell restart button.
+| Connection | Resources | Your desktop |
+| --- | --- | --- |
+| Connect, disconnect and inspect local tunnel status. | Open public services and compact private-resource tiles. | Install resources as web apps, or open existing matching apps. |
+| A theme-green dot indicates a confirmed connection. | Copy a web URL or host address with one click. | Text, washes, accents and status colors follow Omarchy. |
+
+The SVG symbol breathes and soft color washes drift while a fresh connection is confirmed. Disconnecting or losing status stops the motion; panel animations also pause when it closes. Quiet, readable controls remain available throughout.
+
+**Community beta · English interface.** Independent of Pangolin and Omarchy. All screenshots and examples use synthetic resources. The watercolor title artwork takes its visual direction from [my website](https://patrickisenegger.com); the desktop interface uses your theme's colors. [Artwork and rendering](docs/graphics.md).
 
 ## Requirements
 
@@ -58,7 +64,7 @@ Cloud and self-hosted account/request handling are covered by synthetic tests. A
 
 [Official client endpoint documentation](https://docs.pangolin.net/manage/clients/credentials).
 
- The plugin uses that active account. Connect from the panel; any privilege prompt is handled by Pangolin in a terminal. Nothing connects automatically on installation.
+The plugin uses that active account. Connect from the panel; any privilege prompt is handled by Pangolin in a terminal. Nothing connects automatically on installation.
 
 The plugin ID is `patrick.pangolin`. Omarchy will not overwrite an existing installation with that ID. Back up an existing custom copy and its configuration before migrating; do not delete it blindly.
 
@@ -69,8 +75,6 @@ Left-click the bar icon to open the panel. Right-click opens the account's dashb
 Private resources need an active Pangolin connection and working alias DNS. A host resource is not necessarily a web service: configure a full URL or a known scheme under [settings](docs/configuration.md). A TCP allowlist alone does not identify HTTP versus HTTPS.
 
 **Restart shell** restarts the entire Omarchy shell, including its bar and other plugins. It does not disconnect the VPN.
-
-![Controls explained with synthetic data](assets/usage.png)
 
 ## Settings
 
@@ -105,3 +109,7 @@ omarchy plugin validate .
 ```
 
 See [contributing](CONTRIBUTING.md), [changelog](CHANGELOG.md), [license](LICENSE) and [third-party notices](THIRD_PARTY_NOTICES.md).
+
+---
+
+Built by [Patrick Isenegger](https://patrickisenegger.com). Ideas and reproducible issues are welcome — please use fictional resources when sharing examples.

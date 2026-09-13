@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.0-beta.4 — 2026-09-13
+
+- Watercolor-inspired panel with theme-tinted SVG washes and a serif title.
+- Connected-only header motion; static state while offline or closed.
+- Editorial README, watercolor artwork, local badges and creator website link.
+- Generate the UI version from the manifest with a release helper.
+
 ## 0.1.0-beta.3 — 2026-09-13
 
 - Theme-derived semantic connection dot on the bar icon.

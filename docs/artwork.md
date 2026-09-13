@@ -1,0 +1,9 @@
+# Artwork provenance
+
+The original `assets/watercolor-art.png` was generated with the built-in OpenAI Imagegen tool. `assets/readme-hero.png` adds exact typography; `assets/social-preview.png` adapts the title for repository sharing. No existing website illustration was copied. Direction: the paper, ink and restrained watercolor feel of [Patrick Isenegger's public website](https://patrickisenegger.com). This illustration is decorative community artwork, not an official Pangolin logo.
+
+## Generation prompt
+
+> Create a polished original watercolor editorial hero illustration for an open source desktop plugin GitHub README. Wide landscape composition, 3:1 ratio if possible. Off-white cold-pressed watercolor paper with subtle real paper texture and naturally imperfect deckled edges. Fine delicate sepia ink line drawings with muted blue-gray and warm ochre watercolor washes, a very small muted burgundy accent. On the RIGHT half: a charming curled-up pangolin animal (accurate overlapping scales, long tail wrapping around body) resting beside a tiny open laptop, with a few very fine flowing connection lines ending in small ink-drawn circles, a small lock and a cloud. Elegant literary sketchbook feel, mature restrained editorial watercolor, plenty of air, not a cartoon mascot, not glossy, no corporate gradient. LEFT half almost empty pale paper reserved for typography which will be added separately in code. Absolutely no text, no lettering, no numbers, no logo, no URLs. All content wholly fictional and generic. Art direction: personal artist-engineer notebook, delicate washes that bleed naturally on paper, thin organic ink lines. No screenshots, no private infrastructure.
+
+Desktop SVGs are code-native assets. They use active theme colors rather than the banner's fixed palette. Demo screenshots render synthetic resources in an isolated preview harness without accounts or network access.

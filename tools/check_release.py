@@ -10,9 +10,11 @@ manifest=json.loads((root/'manifest.json').read_text())
 assert manifest['schemaVersion']==1
 version=manifest['version']
 assert re.fullmatch(r'\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?',version)
-assert version in (root/'Dashboard.qml').read_text()
+assert 'Version.current' in (root/'Dashboard.qml').read_text()
+assert ('var current = '+json.dumps(version)) in (root/'Version.js').read_text()
 assert version in (root/'CHANGELOG.md').read_text()
-for name in ['BarWidget.qml','Dashboard.qml','Mark.qml']:
+assert version in (root/'assets/badges/version.svg').read_text()
+for name in ['BarWidget.qml','Dashboard.qml','Mark.qml','Wash.qml']:
     assert not re.search(r'#[0-9a-fA-F]{6}',(root/name).read_text()), 'Fixed production palette: '+name
 for p in root.rglob('*.md'):
     for link in re.findall(r'\]\(([^)]+)\)',p.read_text()):

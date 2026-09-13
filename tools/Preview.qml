@@ -19,6 +19,7 @@ Window {
     property bool loading: false
     property string installing: ""
     property string title: "Connected · demo"
+    property color dotColor: window.light ? "#4b7959" : "#94af87"
     property color statusColor: Color.accent
     property string resourceError: ""
     property string actionError: ""

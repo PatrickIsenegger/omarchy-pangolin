@@ -1,8 +1,16 @@
+[![Pangolin für Omarchy – Aquarell-Titelbild](assets/readme-hero.png)](https://patrickisenegger.com)
+
 # Pangolin für Omarchy
 
-Community-Plugin für Verbindungen, öffentliche und private Ressourcen sowie Web-Apps. Die Oberfläche übernimmt das aktive Omarchy-Theme. **Version 0.1.0-beta.3**, Oberfläche zunächst Englisch.
+Community-Plugin für Verbindungen, öffentliche und private Ressourcen sowie Web-Apps. Die Oberfläche übernimmt das aktive Omarchy-Theme. **Community-Beta**, Oberfläche zunächst Englisch.
+
+[![Version](assets/badges/version.svg)](https://github.com/PatrickIsenegger/omarchy-pangolin/releases)
+[![Lizenz](assets/badges/license.svg)](LICENSE)
+[![Hosting](assets/badges/hosting.svg)](docs/compatibility.md)
 
 ![Theme-Vorschau mit erfundenen Ressourcen](assets/preview.png)
+
+Feine SVG-Farbflächen und ein atmendes Symbol beleben das Panel nur bei bestätigter Verbindung. Die Aquarell-Optik ist von [meiner Webseite](https://patrickisenegger.com) inspiriert; die Farben der Oberfläche folgen deinem Omarchy-Theme.
 
 Unabhängiges Community-Projekt. Sämtliche Beispiele und Vorschauen sind synthetisch.
 
@@ -28,3 +36,5 @@ omarchy plugin remove patrick.pangolin
 ```
 
 Updates folgen dem Standardbranch. Lokale Einstellungen und installierte Web-Apps bleiben beim Entfernen bestehen. Weitere Angaben zu Abhängigkeiten, Datenzugriff, Tests und Konfiguration stehen in der [englischen README](README.md).
+
+Entwickelt von [Patrick Isenegger](https://patrickisenegger.com) · [Änderungen](CHANGELOG.md) · [Versionierung](docs/releases.md)
