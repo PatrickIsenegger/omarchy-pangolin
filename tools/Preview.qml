@@ -20,7 +20,7 @@ Window {
     property string installing: ""
     property string title: "Connected · demo"
     property color dotColor: window.light ? "#4b7959" : "#94af87"
-    property color statusColor: Color.accent
+    property color statusColor: dotColor
     property string resourceError: ""
     property string actionError: ""
     property var status: ({state:"connected",running:true,peerCount:1,peerTotal:1,tunnelIp:"192.0.2.10",dns:"192.0.2.1",detail:"Synthetic preview"})
@@ -29,7 +29,7 @@ Window {
       {id:"public:2",name:"Dashboard",url:"https://dashboard.example.com",address:"",internal:false,enabled:true,appInstalled:false,site:"Demo Site"},
       {id:"public:3",name:"Notes",url:"https://notes.example.com",address:"",internal:false,enabled:true,appInstalled:false,site:"Demo Site"},
       {id:"public:4",name:"Photos",url:"https://photos.example.com",address:"",internal:false,enabled:true,appInstalled:false,site:"Demo Site"},
-      {id:"site:1",name:"Wiki",url:"http://wiki.internal:8080",address:"",internal:true,enabled:true,appInstalled:false,site:"Demo Site"},
+      {id:"site:1",name:"Wiki",url:"http://wiki.internal:8080",address:"",internal:true,enabled:true,appInstalled:true,site:"Demo Site"},
       {id:"site:2",name:"Metrics",url:"http://metrics.internal:3000",address:"",internal:true,enabled:true,appInstalled:false,site:"Demo Site"}
     ]
     function close() {}

@@ -14,7 +14,7 @@ assert 'Version.current' in (root/'Dashboard.qml').read_text()
 assert ('var current = '+json.dumps(version)) in (root/'Version.js').read_text()
 assert version in (root/'CHANGELOG.md').read_text()
 assert version in (root/'assets/badges/version.svg').read_text()
-for name in ['BarWidget.qml','Dashboard.qml','Mark.qml','Wash.qml']:
+for name in ['BarWidget.qml','Dashboard.qml','Mark.qml','Wash.qml','ResourceIcon.qml']:
     assert not re.search(r'#[0-9a-fA-F]{6}',(root/name).read_text()), 'Fixed production palette: '+name
 for p in root.rglob('*.md'):
     for link in re.findall(r'\]\(([^)]+)\)',p.read_text()):

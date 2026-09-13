@@ -20,11 +20,11 @@ Ui.Panel {
   property bool launching: false
   property string installing: ""
   ThemePalette { id: palette }
-  readonly property color dotColor: stale ? Color.foreground : status.state === "connected" ? palette.success : status.state === "error" ? Color.urgent : status.state === "warning" ? palette.warning : palette.inactive
+  readonly property color dotColor: stale || launching || status.state === "unknown" || status.state === "warning" ? palette.warning : status.state === "connected" ? palette.success : Color.urgent
   readonly property bool busy: launching || operation.running
   readonly property bool healthy: !stale && status.state === "connected"
   readonly property bool loading: resourcePoll.running
-  readonly property color statusColor: !stale && status.state === "error" ? Color.urgent : healthy ? Color.accent : Color.foreground
+  readonly property color statusColor: dotColor
   readonly property string title: stale ? "Status unavailable" : launching ? "Connecting…" : status.label
   implicitWidth: button.implicitWidth
   implicitHeight: button.implicitHeight

@@ -8,6 +8,7 @@ FocusScope {
   id: view
   required property var control
   readonly property color ink: Color.popups.text
+  readonly property color tooltipSurface: Qt.tint(Color.background, Color.popups.background)
   readonly property color muted: Qt.rgba(ink.r, ink.g, ink.b, 0.68)
   readonly property color accent: Color.accent
   readonly property color internalAccent: Qt.tint(ink, Qt.rgba(accent.r, accent.g, accent.b, 0.42))
@@ -18,6 +19,11 @@ FocusScope {
   readonly property var internalItems: control.items.filter(r => r.internal)
   implicitHeight: content.implicitHeight
   Keys.onEscapePressed: control.close()
+  readonly property string statusHint: control.stale ? "Status could not be confirmed. Reopen the panel to retry; no connection animation runs." : control.healthy ? "Pangolin is connected. Private resources also require working alias DNS. Individual sites may connect on demand." : control.status.state === "warning" ? "Pangolin needs attention. Open Details for the reported condition." : control.status.state === "off" ? "Pangolin is disconnected. Connect to access private resources." : control.status.state === "error" ? "Pangolin reported an error. Open Details or run Diagnose HTTPS." : "Connection is not yet confirmed. Open Details for more information."
+  function resourceHint(item) {
+    const action = !item.enabled ? "This resource is disabled." : !item.url ? "Click to copy the host address. No web protocol is configured." : item.appInstalled ? "Installed app · click to open its app window." : "Browser link · click to open in your browser. Use + to install as an app."
+    return item.name + "\n" + action + "\n" + (item.url || item.address || "") + (item.site ? "\nSite: " + item.site : "") + (item.internal ? "\nRequires a Pangolin connection and alias DNS." : "")
+  }
   function sample() { mark.sample() }
   Flickable {
     anchors.fill: parent; contentHeight: content.implicitHeight; clip: true
@@ -28,14 +34,16 @@ FocusScope {
       Rectangle {
         width: parent.width; height: Style.space(100); radius: Style.space(12)
         color: Qt.rgba(view.ink.r, view.ink.g, view.ink.b, 0.025)
-        border.color: Qt.rgba(view.accent.r, view.accent.g, view.accent.b, 0.17)
+        border.color: Qt.rgba(control.statusColor.r, control.statusColor.g, control.statusColor.b, 0.3)
         clip: true
-        Wash { anchors.fill: parent; anchors.margins: -Style.space(12); pigment: view.accent; shade: view.ink; moving: control.healthy && control.opened }
+        Wash { anchors.fill: parent; anchors.margins: -Style.space(12); pigment: control.statusColor; shade: control.statusColor; moving: control.healthy && control.opened }
+        HoverHandler { id: statusHover }
+        ToolTip { visible: statusHover.hovered; delay: 550; padding: Style.space(8); text: view.statusHint; contentItem: Label { text: view.statusHint; width: Style.space(290); wrapMode: Text.WordWrap } background: Rectangle { color: Qt.rgba(view.tooltipSurface.r, view.tooltipSurface.g, view.tooltipSurface.b, 1); radius: 8; border.color: control.statusColor } }
         RowLayout {
           anchors.fill: parent; anchors.margins: Style.space(12); spacing: Style.space(12)
           Item {
             Layout.preferredWidth: Style.space(56); Layout.preferredHeight: Style.space(64)
-            Rectangle { anchors.centerIn: parent; width: Style.space(53); height: width; radius: width/2; color: "transparent"; border.color: Qt.rgba(view.accent.r, view.accent.g, view.accent.b, 0.22) }
+            Rectangle { anchors.centerIn: parent; width: Style.space(53); height: width; radius: width/2; color: "transparent"; border.color: Qt.rgba(control.statusColor.r, control.statusColor.g, control.statusColor.b, 0.22) }
             Mark { id: mark; anchors.centerIn: parent; width: Style.space(40); height: width; ink: control.statusColor; connected: control.healthy && control.opened; ambient: true }
             Rectangle { width: Style.space(6); height: width; radius: width/2; x: Style.space(43); y: Style.space(7); color: control.stale || control.status.state === "unknown" ? "transparent" : control.dotColor; border.width: 1; border.color: control.dotColor }
           }
@@ -45,33 +53,33 @@ FocusScope {
             Label { text: "Pangolin"; font.family: "serif"; font.pixelSize: Style.font.body + 12 }
             Label { width: parent.width; text: (control.healthy ? "●  " : "◇  ") + control.title; color: control.statusColor; elide: Text.ElideRight }
           }
-          Action { text: "×"; Accessible.name: "Close panel"; onClicked: control.close() }
+          Action { text: "×"; Accessible.name: "Close panel"; hint: "Close panel · Esc"; onClicked: control.close() }
         }
       }
       RowLayout {
         width: parent.width
         Label { Layout.fillWidth: true; text: "Public resources  ·  " + view.externalItems.length; color: view.muted }
-        Action { visible: view.externalItems.length > 6; text: view.all ? "Less" : "All " + view.externalItems.length; onClicked: view.all = !view.all }
+        Action { visible: view.externalItems.length > 6; text: view.all ? "Less" : "All " + view.externalItems.length; hint: view.all ? "Show the first six public resources" : "Show all public resources"; onClicked: view.all = !view.all }
       }
       ResourceGrid { resources: view.all ? view.externalItems : view.externalItems.slice(0, 6); compact: false }
       RowLayout {
         width: parent.width
         Label { Layout.fillWidth: true; text: "Private resources  ·  " + view.internalItems.length; color: view.internalAccent }
-        Action { text: "↻"; Accessible.name: "Refresh resources"; enabled: !control.loading; onClicked: control.loadResources() }
+        Action { text: "↻"; Accessible.name: "Refresh resources"; hint: "Reload resources and check which web apps are installed"; enabled: !control.loading; onClicked: control.loadResources() }
       }
       ResourceGrid { resources: view.internalItems; compact: true }
       Label { width: parent.width; visible: control.loading || !!control.resourceError || !control.items.length; text: control.loading ? "Loading resources…" : control.resourceError || "No resources available."; wrapMode: Text.WordWrap }
       Label { width: parent.width; visible: view.internalItems.length > 0; text: "Private apps use your Pangolin connection and alias DNS."; wrapMode: Text.WordWrap; color: view.muted }
       RowLayout {
         width: parent.width; spacing: Style.space(6)
-        Action { Layout.fillWidth: true; text: "Connect"; primary: true; enabled: !control.demo && !control.busy && !control.stale && control.status.running === false; onClicked: control.connectClient() }
-        Action { Layout.fillWidth: true; text: "Disconnect"; enabled: !control.demo && !control.busy && !control.stale && control.status.running === true; onClicked: control.run("disconnect") }
+        Action { Layout.fillWidth: true; text: "Connect"; hint: "Start Pangolin in a terminal. Complete any authentication or privilege prompt there."; primary: true; enabled: !control.demo && !control.busy && !control.stale && control.status.running === false; onClicked: control.connectClient() }
+        Action { Layout.fillWidth: true; text: "Disconnect"; hint: "Stop the Pangolin connection. Private services will no longer be reachable through it."; enabled: !control.demo && !control.busy && !control.stale && control.status.running === true; onClicked: control.run("disconnect") }
       }
       RowLayout {
         width: parent.width; spacing: Style.space(6)
-        Action { Layout.fillWidth: true; text: view.details ? "Details ▴" : "Details ▾"; onClicked: view.details = !view.details }
-        Action { text: "Restart shell"; enabled: !control.demo; ToolTip.visible: hovered; ToolTip.text: "Restarts the entire Omarchy shell. The VPN stays connected."; onClicked: control.restartApp() }
-        Action { text: "⚙"; Accessible.name: "Edit settings"; enabled: !control.demo && !control.busy; onClicked: control.run("settings") }
+        Action { Layout.fillWidth: true; text: view.details ? "Details ▴" : "Details ▾"; hint: "Tunnel address, DNS, site connections and diagnostics"; onClicked: view.details = !view.details }
+        Action { text: "Restart shell"; enabled: !control.demo; hint: "Restarts the entire Omarchy shell, including other plugins. The VPN stays connected."; onClicked: control.restartApp() }
+        Action { text: "⚙"; Accessible.name: "Edit settings"; hint: "Edit local settings: private web URLs and protocol overrides"; enabled: !control.demo && !control.busy; onClicked: control.run("settings") }
       }
       Column {
         width: parent.width; visible: view.details; spacing: Style.space(6)
@@ -80,8 +88,8 @@ FocusScope {
         Label { width: parent.width; text: control.status.detail || ""; wrapMode: Text.WordWrap; color: view.muted }
         RowLayout {
           width: parent.width
-          Action { Layout.fillWidth: true; text: "Diagnose HTTPS"; enabled: !control.demo && !control.busy; onClicked: control.run("diagnose") }
-          Action { Layout.fillWidth: true; text: "Dashboard ↗"; enabled: !control.demo && !control.busy; onClicked: control.run("dashboard") }
+          Action { Layout.fillWidth: true; text: "Diagnose HTTPS"; hint: "Check HTTPS connectivity to your selected Pangolin server"; enabled: !control.demo && !control.busy; onClicked: control.run("diagnose") }
+          Action { Layout.fillWidth: true; text: "Dashboard ↗"; hint: "Open the dashboard of your active Pangolin account"; enabled: !control.demo && !control.busy; onClicked: control.run("dashboard") }
         }
       }
       Label { width: parent.width; visible: !!control.actionError; text: control.actionError; wrapMode: Text.WordWrap; color: Color.urgent }
@@ -103,19 +111,18 @@ FocusScope {
         width: (grid.width - grid.spacing) / 2; height: Style.space(grid.compact ? 40 : 48); spacing: Style.space(2)
         Action {
           Layout.fillWidth: true; Layout.minimumWidth: 0; Layout.preferredWidth: 1
-          implicitHeight: tile.height; tint: tile.tint; primary: grid.compact
+          implicitHeight: tile.height; tint: tile.tint; primary: grid.compact || tile.modelData.appInstalled; emphasized: tile.modelData.appInstalled
           leftPadding: Style.space(6); rightPadding: Style.space(4)
           enabled: !control.demo && !control.busy && (tile.modelData.url ? tile.modelData.enabled : !!tile.modelData.address)
-          Accessible.name: tile.modelData.name + (tile.modelData.url ? " open" : " copy address")
-          ToolTip.visible: hovered
-          ToolTip.text: tile.modelData.name + "\n" + (tile.modelData.url || tile.modelData.address) + "\n" + tile.modelData.site
+          Accessible.name: tile.modelData.name + (tile.modelData.appInstalled ? " installed app" : tile.modelData.url ? " browser link" : " copy address")
+          hint: view.resourceHint(tile.modelData)
           contentItem: RowLayout {
             spacing: Style.space(5)
-            Label { text: grid.compact ? "◇" : "↗"; color: tile.tint; font.pixelSize: Style.font.body }
+            ResourceIcon { Layout.preferredWidth: Style.space(20); Layout.preferredHeight: Style.space(20); ink: tile.tint; installed: !!tile.modelData.appInstalled; web: !!tile.modelData.url }
             Column {
               Layout.fillWidth: true; Layout.minimumWidth: 0; spacing: 2
               Label { width: parent.width; text: tile.modelData.name; font.bold: true; font.pixelSize: Style.font.caption - (grid.compact ? 1 : 0); elide: Text.ElideRight }
-              Label { width: parent.width; text: !tile.modelData.enabled ? "Disabled" : tile.modelData.appInstalled ? "App ↗" : tile.modelData.url ? "Web ↗" : "Copy address"; color: tile.tint; font.pixelSize: Style.font.caption - 2; elide: Text.ElideRight }
+              Label { width: parent.width; text: !tile.modelData.enabled ? "Disabled" : tile.modelData.appInstalled ? "Installed" : tile.modelData.url ? "Browser" : "Copy address"; color: tile.tint; font.pixelSize: Style.font.caption - 2; elide: Text.ElideRight }
             }
           }
           onClicked: control.openResource(tile.modelData)
@@ -124,7 +131,7 @@ FocusScope {
           Layout.preferredWidth: Style.space(20); leftPadding: 0; rightPadding: 0
           text: tile.copied ? "✓" : "⧉"; enabled: !control.demo
           Accessible.name: "Copy " + tile.modelData.name
-          ToolTip.visible: hovered; ToolTip.text: tile.copied ? "Copied" : "Copy URL or address"
+          hint: tile.copied ? "Copied to clipboard" : "Copy " + (tile.modelData.url ? "URL" : "host address") + "\n" + (tile.modelData.url || tile.modelData.address)
           onClicked: { control.copyResource(tile.modelData); tile.copied = true; copiedTimer.restart() }
         }
         Action {
@@ -133,7 +140,7 @@ FocusScope {
           text: control.installing === tile.modelData.id ? "…" : "+"; primary: true; tint: tile.tint
           enabled: !control.demo && !control.busy && tile.modelData.enabled
           Accessible.name: "Install " + tile.modelData.name + " as an app"
-          ToolTip.visible: hovered; ToolTip.text: "Install as a web app"
+          hint: "Install " + tile.modelData.name + " as an Omarchy web app. Adds a launcher; the service remains on its server."
           onClicked: control.run("install", tile.modelData.id)
         }
         Timer { id: copiedTimer; interval: 1500; onTriggered: tile.copied = false }
@@ -146,6 +153,15 @@ FocusScope {
   component Action: Button {
     id: action
     property bool primary: false
+    property bool emphasized: false
+    property string hint: ""
+    Accessible.description: hint
+    HoverHandler { id: actionHover }
+    ToolTip {
+      visible: (actionHover.hovered || action.activeFocus) && !!action.hint; delay: 550; padding: Style.space(8)
+      contentItem: Label { text: action.hint; width: Math.min(implicitWidth, Style.space(290)); wrapMode: Text.Wrap }
+      background: Rectangle { color: Qt.rgba(view.tooltipSurface.r, view.tooltipSurface.g, view.tooltipSurface.b, 1); radius: Style.space(8); border.color: action.tint }
+    }
     property color tint: view.accent
     implicitHeight: Style.space(28)
     implicitWidth: (contentItem ? contentItem.implicitWidth : 0) + Style.space(16)
@@ -155,8 +171,8 @@ FocusScope {
       radius: Style.space(9)
       clip: true
       color: Qt.rgba(view.ink.r,view.ink.g,view.ink.b,action.hovered ? 0.065 : 0.025)
-      border.width: action.activeFocus ? 2 : 1
-      border.color: action.activeFocus ? action.tint : Qt.rgba(action.tint.r,action.tint.g,action.tint.b,0.16)
+      border.width: action.activeFocus || action.emphasized ? 2 : 1
+      border.color: action.activeFocus ? action.tint : action.emphasized ? Qt.rgba(action.tint.r,action.tint.g,action.tint.b,0.48) : Qt.rgba(action.tint.r,action.tint.g,action.tint.b,0.16)
       Wash {
         anchors.fill: parent; anchors.margins: -4
         visible: action.primary

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.0-beta.5 — 2026-09-13
+
+- Distinguish installed apps with a checked window SVG, stronger outline and Installed label; browser links use a globe.
+- Explain resource targets, app installation, private connectivity and controls with delayed hover tips, including keyboard focus.
+- Tint the header with semantic theme colors: green connected, yellow attention/unknown, red disconnected/error. Motion remains connected-only.
+
 ## 0.1.0-beta.4 — 2026-09-13
 
 - Watercolor-inspired panel with theme-tinted SVG washes and a serif title.

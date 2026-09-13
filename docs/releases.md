@@ -13,7 +13,7 @@ Community registry submission follows initial beta feedback. Publishing the repo
 ## Preparing the next version
 
 ```bash
-python3 tools/bump_version.py 0.1.0-beta.5
+python3 tools/bump_version.py 0.1.0-beta.6
 ```
 
 This updates the manifest, shared UI version and local README version badge together. Choose the actual next version, update `CHANGELOG.md`, regenerate previews, then run `python3 tools/check_release.py` and the documented checks. Beta numbers increase monotonically; published tags are never rewritten. The version badge links to GitHub Releases so readers can see release notes and prerelease status.

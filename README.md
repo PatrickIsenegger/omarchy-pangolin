@@ -20,7 +20,7 @@
 | Connection | Resources | Your desktop |
 | --- | --- | --- |
 | Connect, disconnect and inspect local tunnel status. | Open public services and compact private-resource tiles. | Install resources as web apps, or open existing matching apps. |
-| A theme-green dot indicates a confirmed connection. | Copy a web URL or host address with one click. | Text, washes, accents and status colors follow Omarchy. |
+| Green means connected; yellow needs attention; red means disconnected or an error. | Copy a web URL or host address with one click. | Text, washes, accents and status colors follow Omarchy. |
 
 The SVG symbol breathes and soft color washes drift while a fresh connection is confirmed. Disconnecting or losing status stops the motion; panel animations also pause when it closes. Quiet, readable controls remain available throughout.
 
@@ -69,6 +69,8 @@ The plugin uses that active account. Connect from the panel; any privilege promp
 The plugin ID is `patrick.pangolin`. Omarchy will not overwrite an existing installation with that ID. Back up an existing custom copy and its configuration before migrating; do not delete it blindly.
 
 ## Use
+
+Installed apps have a checked window icon, a stronger outline and an **Installed** label. Browser links use a globe and **Browser** label; the plus button installs an app launcher. Hover over resources and controls (or focus a button with the keyboard) for contextual help. The header uses theme green for a confirmed connection, yellow for pending/unknown states and warnings, and red for disconnected/error states.
 
 Left-click the bar icon to open the panel. Right-click opens the account's dashboard. Resource tiles open their web URL, preferring a matching installed app. `+` installs a web-app launcher. The adjacent copy button copies the URL or host address.
 
