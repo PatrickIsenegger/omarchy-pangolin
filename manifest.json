@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "patrick.pangolin",
   "name": "Pangolin for Omarchy",
-  "version": "0.1.0-beta.5",
+  "version": "0.1.0-beta.6",
   "author": "PatrickIsenegger",
   "description": "Community Pangolin connections, resources and web apps. Follows your Omarchy theme.",
   "kinds": [

@@ -24,9 +24,11 @@ Pangolin-CLI installieren. Für Pangolin Cloud mit `pangolin login app.pangolin.
 
 ## Bedienung
 
-Installierte Apps tragen ein Fenster-Symbol mit Häkchen, eine stärkere Umrandung und „Installed“. Web-Links erkennt man am Globus und „Browser“. Hover-Infos erklären Ziele und Aktionen. Oben steht Grün für verbunden, Gelb für ausstehend/unbekannt oder eine Warnung und Rot für getrennt/Fehler – jeweils aus dem Theme.
+Die kompakte Ressourcenliste zeigt nur Symbol und Name: Fenster mit Häkchen = installierte App, Globus = Browser-Link, überlappende Blätter = Host-Adresse kopieren. Apps erhalten eine dezente, flache Tönung. Hover-Infos erklären Ziel und Voraussetzungen.
 
-Linksklick öffnet das Panel, Rechtsklick das Dashboard. Ressourcen öffnen im Browser oder in einer erkannten Web-App. Das Plus installiert einen Launcher; der Kopierknopf kopiert die Adresse. Interne Ressourcen benötigen Pangolin und Alias-DNS. Für Host-Webdienste die vollständige URL oder ein bekanntes Protokoll in der Konfiguration hinterlegen.
+Linksklick öffnet die Ressource. Das **⋮-Menü** (auch per Rechtsklick) enthält Kopieren und App-Installation. **? Help** im Panel führt zur [Dokumentation](docs/README.md). Interne Dienste benötigen die Pangolin-Verbindung und Alias-DNS; für Host-Webdienste gegebenenfalls eine vollständige URL konfigurieren.
+
+Oben steht Grün für verbunden, Gelb für ausstehend/unbekannt oder Warnung und Rot für getrennt/Fehler – jeweils aus dem Theme.
 
 „Restart shell“ startet die gesamte Omarchy-Leiste mit ihren Plugins neu; die VPN-Verbindung bleibt bestehen. Ohne bestätigte Verbindung gibt es keine Statusanimation.
 

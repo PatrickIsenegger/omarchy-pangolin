@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.0-beta.6 — 2026-09-13
+
+- Compact, single-line resources identified by window, globe or copy SVGs; flat app tiles replace resource watercolor fills and secondary labels.
+- Show up to eight public resources in the default view instead of six.
+- Copy and installation actions move into a three-dot menu, also available by right-click.
+- Add an in-panel Help link and bilingual documentation with an icon legend and usage guide.
+
 ## 0.1.0-beta.5 — 2026-09-13
 
 - Distinguish installed apps with a checked window SVG, stronger outline and Installed label; browser links use a globe.

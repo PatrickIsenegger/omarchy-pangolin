@@ -57,6 +57,7 @@ Ui.Panel {
     else copyResource(item)
   }
   function copyResource(item) { if (!demo) Quickshell.execDetached(["wl-copy", "--", item.url || item.address]) }
+  function openHelp() { if (!demo) Quickshell.execDetached(["xdg-open", "https://github.com/PatrickIsenegger/omarchy-pangolin/blob/main/docs/README.md"]) }
   function restartApp() { if (!demo) { close(); Quickshell.execDetached(["omarchy", "restart", "shell"]) } }
   onOpenedChanged: if (opened) { refresh(); loadResources() }
   onDemoChanged: { stale = true; items = []; refresh(); loadResources() }

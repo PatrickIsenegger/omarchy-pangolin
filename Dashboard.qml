@@ -21,7 +21,7 @@ FocusScope {
   Keys.onEscapePressed: control.close()
   readonly property string statusHint: control.stale ? "Status could not be confirmed. Reopen the panel to retry; no connection animation runs." : control.healthy ? "Pangolin is connected. Private resources also require working alias DNS. Individual sites may connect on demand." : control.status.state === "warning" ? "Pangolin needs attention. Open Details for the reported condition." : control.status.state === "off" ? "Pangolin is disconnected. Connect to access private resources." : control.status.state === "error" ? "Pangolin reported an error. Open Details or run Diagnose HTTPS." : "Connection is not yet confirmed. Open Details for more information."
   function resourceHint(item) {
-    const action = !item.enabled ? "This resource is disabled." : !item.url ? "Click to copy the host address. No web protocol is configured." : item.appInstalled ? "Installed app · click to open its app window." : "Browser link · click to open in your browser. Use + to install as an app."
+    const action = !item.enabled ? "This resource is disabled." : !item.url ? "Click to copy the host address. No web protocol is configured." : item.appInstalled ? "Installed app · click to open its app window." : "Browser link · click to open in your browser. Use the actions menu to install as an app."
     return item.name + "\n" + action + "\n" + (item.url || item.address || "") + (item.site ? "\nSite: " + item.site : "") + (item.internal ? "\nRequires a Pangolin connection and alias DNS." : "")
   }
   function sample() { mark.sample() }
@@ -59,9 +59,9 @@ FocusScope {
       RowLayout {
         width: parent.width
         Label { Layout.fillWidth: true; text: "Public resources  ·  " + view.externalItems.length; color: view.muted }
-        Action { visible: view.externalItems.length > 6; text: view.all ? "Less" : "All " + view.externalItems.length; hint: view.all ? "Show the first six public resources" : "Show all public resources"; onClicked: view.all = !view.all }
+        Action { visible: view.externalItems.length > 8; text: view.all ? "Less" : "All " + view.externalItems.length; hint: view.all ? "Show the first eight public resources" : "Show all public resources"; onClicked: view.all = !view.all }
       }
-      ResourceGrid { resources: view.all ? view.externalItems : view.externalItems.slice(0, 6); compact: false }
+      ResourceGrid { resources: view.all ? view.externalItems : view.externalItems.slice(0, 8); compact: false }
       RowLayout {
         width: parent.width
         Label { Layout.fillWidth: true; text: "Private resources  ·  " + view.internalItems.length; color: view.internalAccent }
@@ -89,61 +89,84 @@ FocusScope {
         RowLayout {
           width: parent.width
           Action { Layout.fillWidth: true; text: "Diagnose HTTPS"; hint: "Check HTTPS connectivity to your selected Pangolin server"; enabled: !control.demo && !control.busy; onClicked: control.run("diagnose") }
-          Action { Layout.fillWidth: true; text: "Dashboard ↗"; hint: "Open the dashboard of your active Pangolin account"; enabled: !control.demo && !control.busy; onClicked: control.run("dashboard") }
+          Action { Layout.fillWidth: true; text: "Dashboard"; hint: "Open the dashboard of your active Pangolin account"; enabled: !control.demo && !control.busy; onClicked: control.run("dashboard") }
         }
       }
       Label { width: parent.width; visible: !!control.actionError; text: control.actionError; wrapMode: Text.WordWrap; color: Color.urgent }
-      Label { width: parent.width; text: "Community · " + Version.current + (control.demo ? " · DEMO" : ""); color: view.muted; horizontalAlignment: Text.AlignHCenter; font.pixelSize: Style.font.caption - 1 }
+      RowLayout {
+        width: parent.width
+        Label { Layout.fillWidth: true; text: "Community · " + Version.current + (control.demo ? " · DEMO" : ""); color: view.muted; font.pixelSize: Style.font.caption - 1 }
+        Action { text: "? Help"; enabled: !control.demo; hint: "Open the user guide, icon legend and troubleshooting on GitHub"; onClicked: control.openHelp() }
+      }
     }
   }
   component ResourceGrid: Grid {
     required property var resources
     property bool compact: false
     id: grid
-    width: parent.width; columns: 2; spacing: Style.space(5)
+    width: parent.width; columns: 2; spacing: Style.space(4)
     Repeater {
       model: grid.resources
       RowLayout {
         id: tile
         required property var modelData
         readonly property color tint: grid.compact ? view.internalAccent : view.accent
-        property bool copied: false
-        width: (grid.width - grid.spacing) / 2; height: Style.space(grid.compact ? 40 : 48); spacing: Style.space(2)
+        width: (grid.width - grid.spacing) / 2; height: Style.space(grid.compact ? 30 : 34); spacing: 0
         Action {
+          id: resourceButton
           Layout.fillWidth: true; Layout.minimumWidth: 0; Layout.preferredWidth: 1
-          implicitHeight: tile.height; tint: tile.tint; primary: grid.compact || tile.modelData.appInstalled; emphasized: tile.modelData.appInstalled
+          implicitHeight: tile.height; tint: tile.tint; tinted: !!tile.modelData.appInstalled
           leftPadding: Style.space(6); rightPadding: Style.space(4)
           enabled: !control.demo && !control.busy && (tile.modelData.url ? tile.modelData.enabled : !!tile.modelData.address)
           Accessible.name: tile.modelData.name + (tile.modelData.appInstalled ? " installed app" : tile.modelData.url ? " browser link" : " copy address")
           hint: view.resourceHint(tile.modelData)
           contentItem: RowLayout {
-            spacing: Style.space(5)
-            ResourceIcon { Layout.preferredWidth: Style.space(20); Layout.preferredHeight: Style.space(20); ink: tile.tint; installed: !!tile.modelData.appInstalled; web: !!tile.modelData.url }
-            Column {
-              Layout.fillWidth: true; Layout.minimumWidth: 0; spacing: 2
-              Label { width: parent.width; text: tile.modelData.name; font.bold: true; font.pixelSize: Style.font.caption - (grid.compact ? 1 : 0); elide: Text.ElideRight }
-              Label { width: parent.width; text: !tile.modelData.enabled ? "Disabled" : tile.modelData.appInstalled ? "Installed" : tile.modelData.url ? "Browser" : "Copy address"; color: tile.tint; font.pixelSize: Style.font.caption - 2; elide: Text.ElideRight }
-            }
+            spacing: Style.space(6)
+            ResourceIcon { Layout.preferredWidth: Style.space(18); Layout.preferredHeight: Style.space(18); ink: tile.tint; installed: !!tile.modelData.appInstalled; web: !!tile.modelData.url }
+            Label { Layout.fillWidth: true; Layout.minimumWidth: 0; text: tile.modelData.name; font.pixelSize: Style.font.caption - (grid.compact ? 1 : 0); elide: Text.ElideRight }
           }
           onClicked: control.openResource(tile.modelData)
+          TapHandler { acceptedButtons: Qt.RightButton; onTapped: resourceMenu.open() }
         }
         Action {
-          Layout.preferredWidth: Style.space(20); leftPadding: 0; rightPadding: 0
-          text: tile.copied ? "✓" : "⧉"; enabled: !control.demo
-          Accessible.name: "Copy " + tile.modelData.name
-          hint: tile.copied ? "Copied to clipboard" : "Copy " + (tile.modelData.url ? "URL" : "host address") + "\n" + (tile.modelData.url || tile.modelData.address)
-          onClicked: { control.copyResource(tile.modelData); tile.copied = true; copiedTimer.restart() }
+          Layout.preferredWidth: Style.space(20); implicitHeight: tile.height; leftPadding: 0; rightPadding: 0
+          text: control.installing === tile.modelData.id ? "…" : "⋮"
+          Accessible.name: "Actions for " + tile.modelData.name
+          hint: "Copy address" + (tile.modelData.url && !tile.modelData.appInstalled ? " or install as an app" : "") + " · also available with right-click"
+          onClicked: resourceMenu.open()
         }
-        Action {
-          visible: !!tile.modelData.url && !tile.modelData.appInstalled
-          Layout.preferredWidth: Style.space(22); leftPadding: 0; rightPadding: 0
-          text: control.installing === tile.modelData.id ? "…" : "+"; primary: true; tint: tile.tint
-          enabled: !control.demo && !control.busy && tile.modelData.enabled
-          Accessible.name: "Install " + tile.modelData.name + " as an app"
-          hint: "Install " + tile.modelData.name + " as an Omarchy web app. Adds a launcher; the service remains on its server."
-          onClicked: control.run("install", tile.modelData.id)
+        Popup {
+          id: resourceMenu
+          parent: Overlay.overlay
+          x: Math.max(Style.space(6), Math.min(tile.mapToItem(parent, 0, 0).x, parent.width - width - Style.space(6)))
+          y: Math.max(Style.space(6), Math.min(tile.mapToItem(parent, 0, tile.height).y, parent.height - height - Style.space(6)))
+          onAboutToShow: {
+            const point = tile.mapToItem(Overlay.overlay, 0, tile.height)
+            x = Math.max(Style.space(6), Math.min(point.x, Overlay.overlay.width - width - Style.space(6)))
+            y = Math.max(Style.space(6), Math.min(point.y, Overlay.overlay.height - height - Style.space(6)))
+          }
+          width: Style.space(240); padding: Style.space(6); focus: true
+          background: Rectangle { color: view.tooltipSurface; radius: Style.space(9); border.color: tile.tint }
+          contentItem: Column {
+            spacing: Style.space(4)
+            Label { width: parent.width; text: tile.modelData.name; elide: Text.ElideRight; font.bold: true; padding: Style.space(4) }
+            Action {
+              width: parent.width; text: tile.modelData.appInstalled ? "Open app" : tile.modelData.url ? "Open in browser" : "Copy host address"
+              enabled: !control.demo && !control.busy && (tile.modelData.url ? tile.modelData.enabled : !!tile.modelData.address)
+              onClicked: { resourceMenu.close(); control.openResource(tile.modelData) }
+            }
+            Action {
+              width: parent.width; visible: !!tile.modelData.url; text: "Copy URL"; enabled: !control.demo
+              onClicked: { control.copyResource(tile.modelData); resourceMenu.close() }
+            }
+            Action {
+              width: parent.width; visible: !!tile.modelData.url && !tile.modelData.appInstalled; text: "Install as app"
+              enabled: !control.demo && !control.busy && tile.modelData.enabled
+              hint: "Adds an Omarchy app launcher. The service remains on its server."
+              onClicked: { resourceMenu.close(); control.run("install", tile.modelData.id) }
+            }
+          }
         }
-        Timer { id: copiedTimer; interval: 1500; onTriggered: tile.copied = false }
       }
     }
   }
@@ -154,6 +177,7 @@ FocusScope {
     id: action
     property bool primary: false
     property bool emphasized: false
+    property bool tinted: false
     property string hint: ""
     Accessible.description: hint
     HoverHandler { id: actionHover }
@@ -170,7 +194,7 @@ FocusScope {
     background: Rectangle {
       radius: Style.space(9)
       clip: true
-      color: Qt.rgba(view.ink.r,view.ink.g,view.ink.b,action.hovered ? 0.065 : 0.025)
+      color: action.tinted ? Qt.rgba(action.tint.r,action.tint.g,action.tint.b,action.hovered ? 0.16 : 0.085) : Qt.rgba(view.ink.r,view.ink.g,view.ink.b,action.hovered ? 0.065 : 0.025)
       border.width: action.activeFocus || action.emphasized ? 2 : 1
       border.color: action.activeFocus ? action.tint : action.emphasized ? Qt.rgba(action.tint.r,action.tint.g,action.tint.b,0.48) : Qt.rgba(action.tint.r,action.tint.g,action.tint.b,0.16)
       Wash {

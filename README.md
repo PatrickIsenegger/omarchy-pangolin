@@ -11,7 +11,7 @@
 [![Hosting: Cloud and self-hosted](assets/badges/hosting.svg)](docs/compatibility.md)
 [![Style: Omarchy theme](assets/badges/theme.svg)](docs/graphics.md)
 
-[Install](#install) · [Configure](docs/configuration.md) · [Releases](https://github.com/PatrickIsenegger/omarchy-pangolin/releases) · [Deutsch](README.de.md) · [Patrick Isenegger ↗](https://patrickisenegger.com)
+[Install](#install) · [User guide](docs/README.md) · [Configure](docs/configuration.md) · [Releases](https://github.com/PatrickIsenegger/omarchy-pangolin/releases) · [Deutsch](README.de.md) · [Patrick Isenegger ↗](https://patrickisenegger.com)
 
 ![The real plugin UI in two demonstration themes; all resources are fictional](assets/preview.png)
 
@@ -70,9 +70,11 @@ The plugin ID is `patrick.pangolin`. Omarchy will not overwrite an existing inst
 
 ## Use
 
-Installed apps have a checked window icon, a stronger outline and an **Installed** label. Browser links use a globe and **Browser** label; the plus button installs an app launcher. Hover over resources and controls (or focus a button with the keyboard) for contextual help. The header uses theme green for a confirmed connection, yellow for pending/unknown states and warnings, and red for disconnected/error states.
+Resources use a compact single-line layout: a **checked window** identifies an installed app, a **globe** a browser link, and **overlapping sheets** an address-only resource. App tiles have a subtle flat tint; there are no repeated type labels or resource watercolor fills. Hover or focus a resource for its full name, target and requirements.
 
-Left-click the bar icon to open the panel. Right-click opens the account's dashboard. Resource tiles open their web URL, preferring a matching installed app. `+` installs a web-app launcher. The adjacent copy button copies the URL or host address.
+Left-click a resource to open it (or copy an address-only host). The **⋮ menu**, also available by right-click, contains opening, copying and app installation. **? Help** in the panel opens the [user guide](docs/README.md). Left-click the bar icon to toggle the panel; right-click the bar icon opens the account dashboard.
+
+The header uses theme green for a confirmed connection, yellow for pending/unknown states and warnings, and red for disconnected/error states.
 
 Private resources need an active Pangolin connection and working alias DNS. A host resource is not necessarily a web service: configure a full URL or a known scheme under [settings](docs/configuration.md). A TCP allowlist alone does not identify HTTP versus HTTPS.
 
