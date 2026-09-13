@@ -144,9 +144,8 @@ FocusScope {
         Popup {
           id: resourceMenu
           parent: Overlay.overlay
-          x: Math.max(Style.space(6), Math.min(tile.mapToItem(parent, 0, 0).x, parent.width - width - Style.space(6)))
-          y: Math.max(Style.space(6), Math.min(tile.mapToItem(parent, 0, tile.height).y, parent.height - height - Style.space(6)))
           onAboutToShow: {
+            if (!Overlay.overlay) { close(); return }
             const point = tile.mapToItem(Overlay.overlay, 0, tile.height)
             x = Math.max(Style.space(6), Math.min(point.x, Overlay.overlay.width - width - Style.space(6)))
             y = Math.max(Style.space(6), Math.min(point.y, Overlay.overlay.height - height - Style.space(6)))
