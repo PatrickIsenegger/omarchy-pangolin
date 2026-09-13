@@ -58,7 +58,11 @@ def account():
         data = json.loads(ACCOUNTS.read_text())
         a = data['accounts'][data['activeuserid']]
         host = a['host'].rstrip('/')
-        if not web_url(host) or urlsplit(host).scheme != 'https' or not a['sessionToken'] or not a['orgId']:
+        if '://' not in host:
+            host = 'https://' + host
+        if host.endswith('/api/v1'):
+            host = host[:-7]
+        if not web_url(host) or urlsplit(host).scheme != 'https' or urlsplit(host).query or urlsplit(host).fragment or not a['sessionToken'] or not a['orgId']:
             raise ValueError()
         return dict(host=host, token=a['sessionToken'], org=str(a['orgId']))
     except (OSError, ValueError, KeyError, TypeError):

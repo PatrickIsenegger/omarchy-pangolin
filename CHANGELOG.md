@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.0-beta.2 — 2026-09-13
+
+- Explicit Cloud and self-hosted setup documentation and control-plane tests.
+- Normalize CLI account hosts with bare hostnames, trailing slashes or API suffixes.
+
 ## 0.1.0-beta.1 — 2026-09-13
 
 - Initial community beta with a fresh, synthetic-data-only project history.

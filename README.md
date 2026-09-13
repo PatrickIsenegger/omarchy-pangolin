@@ -2,7 +2,7 @@
 
 A community bar plugin for Pangolin connections, public and private resources, and web apps. Follows your active Omarchy theme.
 
-**0.1.0-beta.1 · Community beta · English UI** · [Deutsch](README.de.md)
+**0.1.0-beta.2 · Community beta · English UI** · [Deutsch](README.de.md)
 
 ![Dark and light previews with synthetic demo resources](assets/preview.png)
 
@@ -37,7 +37,27 @@ For a local source checkout:
 omarchy plugin add /path/to/omarchy-pangolin --enable
 ```
 
-Authenticate with `pangolin login` and select your organization using the CLI. The plugin uses that active account. Connect from the panel; any privilege prompt is handled by Pangolin in a terminal. Nothing connects automatically on installation.
+### Pangolin Cloud and self-hosted servers
+
+Both are supported through the active CLI account. For Pangolin Cloud:
+
+```bash
+pangolin login app.pangolin.net
+```
+
+For a self-hosted server:
+
+```bash
+pangolin login https://gateway.example.com
+```
+
+Select your organization using the CLI. When using several accounts, use `pangolin select account` and reopen the panel to refresh resources. The plugin uses the session API on the selected dashboard host, not the separate integration API at `api.pangolin.net`. You do not need a new integration API key.
+
+Cloud and self-hosted account/request handling are covered by synthetic tests. Authenticated Cloud end-to-end testing still needs a Cloud account.
+
+[Official client endpoint documentation](https://docs.pangolin.net/manage/clients/credentials).
+
+ The plugin uses that active account. Connect from the panel; any privilege prompt is handled by Pangolin in a terminal. Nothing connects automatically on installation.
 
 The plugin ID is `patrick.pangolin`. Omarchy will not overwrite an existing installation with that ID. Back up an existing custom copy and its configuration before migrating; do not delete it blindly.
 

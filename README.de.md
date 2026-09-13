@@ -1,6 +1,6 @@
 # Pangolin für Omarchy
 
-Community-Plugin für Verbindungen, öffentliche und private Ressourcen sowie Web-Apps. Die Oberfläche übernimmt das aktive Omarchy-Theme. **Version 0.1.0-beta.1**, Oberfläche zunächst Englisch.
+Community-Plugin für Verbindungen, öffentliche und private Ressourcen sowie Web-Apps. Die Oberfläche übernimmt das aktive Omarchy-Theme. **Version 0.1.0-beta.2**, Oberfläche zunächst Englisch.
 
 ![Theme-Vorschau mit erfundenen Ressourcen](assets/preview.png)
 
@@ -12,7 +12,7 @@ Unabhängiges Community-Projekt. Sämtliche Beispiele und Vorschauen sind synthe
 omarchy plugin add https://github.com/PatrickIsenegger/omarchy-pangolin.git --enable
 ```
 
-Pangolin-CLI installieren, mit `pangolin login` anmelden und eine Organisation auswählen. Das Plugin verwendet das aktive CLI-Konto. Eine bereits vorhandene Installation mit derselben ID vor einer Migration sichern.
+Pangolin-CLI installieren. Für Pangolin Cloud mit `pangolin login app.pangolin.net`, für Self-Hosting mit `pangolin login https://gateway.example.com` anmelden und eine Organisation auswählen. Beide Varianten werden über das aktive CLI-Konto unterstützt. Cloud ist mit synthetischen Tests abgedeckt; ein echter Cloud-End-to-End-Test steht noch aus. Das Plugin verwendet das aktive CLI-Konto. Eine bereits vorhandene Installation mit derselben ID vor einer Migration sichern.
 
 ## Bedienung
 

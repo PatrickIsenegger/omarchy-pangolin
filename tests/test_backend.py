@@ -14,6 +14,26 @@ class BackendTests(unittest.TestCase):
     def row(self, **kw):
         return dict(dict(launcherResourceKey='site:1',name='Wiki',resourceType='site',mode='host',accessCopyValue='wiki.internal',enabled=True),**kw)
 
+    def test_cloud_and_self_hosted_accounts(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp)/'accounts.json'
+            for host, expected in [('app.pangolin.net', 'https://app.pangolin.net'), ('https://app.pangolin.net/', 'https://app.pangolin.net'), ('https://gateway.example.com/api/v1', 'https://gateway.example.com')]:
+                path.write_text(json.dumps({'activeuserid':'demo', 'accounts':{'demo':{'host':host, 'orgId':'demo-org', 'sessionToken':'synthetic-session'}}}))
+                with patch.object(b, 'ACCOUNTS', path):
+                    self.assertEqual(b.account(), {'host':expected, 'org':'demo-org', 'token':'synthetic-session'})
+
+    def test_api_uses_selected_control_plane(self):
+        for host in ['https://app.pangolin.net', 'https://gateway.example.com']:
+            from unittest.mock import MagicMock
+            import io
+            opener = MagicMock()
+            opener.open.return_value.__enter__.return_value = io.BytesIO(b'{"success":true,"data":{"resources":[]}}')
+            with patch.object(b.urllib.request, 'build_opener', return_value=opener):
+                self.assertEqual(b.api({'host':host,'org':'demo-org','token':'synthetic-session'}, '/launcher/resources'), {'resources':[]})
+            request = opener.open.call_args.args[0]
+            self.assertEqual(request.full_url, host+'/api/v1/org/demo-org/launcher/resources')
+            self.assertEqual(request.get_header('Cookie'), 'p_session_token=synthetic-session')
+
     def test_status_semantics(self):
         d=dict(connected=True,registered=True,terminated=False,peers={})
         self.assertEqual(b.classify(d)['state'],'warning')

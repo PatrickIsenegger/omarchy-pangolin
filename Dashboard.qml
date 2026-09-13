@@ -76,7 +76,7 @@ FocusScope {
         }
       }
       Label { width: parent.width; visible: !!control.actionError; text: control.actionError; wrapMode: Text.WordWrap; color: Color.urgent }
-      Label { width: parent.width; text: "Community plugin · 0.1.0-beta.1" + (control.demo ? " · DEMO" : ""); color: view.muted; horizontalAlignment: Text.AlignHCenter; font.pixelSize: Style.font.caption - 1 }
+      Label { width: parent.width; text: "Community plugin · 0.1.0-beta.2" + (control.demo ? " · DEMO" : ""); color: view.muted; horizontalAlignment: Text.AlignHCenter; font.pixelSize: Style.font.caption - 1 }
     }
   }
   component ResourceGrid: Grid {

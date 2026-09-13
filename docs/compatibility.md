@@ -11,3 +11,5 @@ Resource interface: `/api/v1/org/:orgId/launcher/resources` with `groupKey=all`,
 Automated checks use synthetic responses and mocked installation. Fresh-user installation, real account switching, multiple monitors and the entire supported server matrix require community testing. Preview renders verify the actual Dashboard component with synthetic palette and data adapters; they are not screenshots of an authenticated desktop.
 
 Known beta limitations: English UI; configuration uses a JSON editor; only HTTP(S) web-app launchers; host ports/protocols sometimes require explicit overrides; Chromium is the web browser; resource lists refresh on panel open or manually; HTTPS diagnosis does not test UDP or prove app reachability.
+
+Cloud (`https://app.pangolin.net`) and self-hosted HTTPS accounts share the same selected-host session API adapter. Host normalization and request destinations are tested for both. Authenticated Cloud access has not been end-to-end verified.
