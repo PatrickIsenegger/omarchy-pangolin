@@ -6,12 +6,20 @@
 
 **Your connections, close at hand.** A community bar plugin for Pangolin connections, resources and web apps — painted in your active Omarchy theme.
 
-[![Version](assets/badges/version.svg)](https://github.com/PatrickIsenegger/omarchy-pangolin/releases)
-[![License: MIT](assets/badges/license.svg)](LICENSE)
-[![Hosting: Cloud and self-hosted](assets/badges/hosting.svg)](docs/compatibility.md)
-[![Style: Omarchy theme](assets/badges/theme.svg)](docs/graphics.md)
+<p align="center">
+  <a href="https://github.com/PatrickIsenegger/omarchy-pangolin/releases/latest"><img src="assets/badges/release.svg" alt="Release: 0.1.0"></a>
+  <a href="LICENSE"><img src="assets/badges/license.svg" alt="License: MIT"></a>
+  <a href="docs/compatibility.md"><img src="assets/badges/hosting.svg" alt="Hosting: Cloud and self-hosted"></a>
+  <a href="docs/graphics.md"><img src="assets/badges/theme.svg" alt="Style: Omarchy theme"></a>
+</p>
 
-[Install](#install) · [User guide](docs/README.md) · [Configure](docs/configuration.md) · [Releases](https://github.com/PatrickIsenegger/omarchy-pangolin/releases) · [Deutsch](README.de.md) · [Patrick Isenegger ↗](https://patrickisenegger.com)
+<p align="center">
+  <a href="#install">Install</a> ·
+  <a href="docs/README.md">User guide</a> ·
+  <a href="docs/configuration.md">Configure</a> ·
+  <a href="https://github.com/PatrickIsenegger/omarchy-pangolin/releases/latest">Latest release</a> ·
+  <a href="README.de.md">Deutsch</a>
+</p>
 
 ![The real plugin UI in two demonstration themes; all resources are fictional](assets/preview.png)
 
@@ -24,7 +32,7 @@
 
 The SVG symbol breathes and soft color washes drift only while the panel is open and a fresh connection is confirmed. Closing the panel, disconnecting or losing status stops connection motion. A short resource-icon hover transition adds feedback without a repeating animation. Quiet, readable controls remain available throughout.
 
-**Community release · English interface.** Independent of Pangolin and Omarchy. All screenshots and examples use synthetic resources. The watercolor title artwork takes its visual direction from [my website](https://patrickisenegger.com); the desktop interface uses your theme's colors. [Artwork and rendering](docs/graphics.md).
+**Community release · English interface.** Independent of Pangolin and Omarchy. All screenshots and examples use synthetic resources. The desktop interface uses your theme's colors. [Artwork and rendering](docs/graphics.md).
 
 ## Requirements
 

@@ -1,16 +1,28 @@
-[![Pangolin für Omarchy – Aquarell-Titelbild](assets/readme-hero.png)](https://patrickisenegger.com)
+<p align="center">
+  <a href="https://patrickisenegger.com"><img src="assets/readme-hero.png" alt="Pangolin für Omarchy – Aquarell-Titelbild" width="100%"></a>
+</p>
 
 # Pangolin für Omarchy
 
 Community-Plugin für Verbindungen, öffentliche und private Ressourcen sowie Web-Apps. Die Oberfläche übernimmt das aktive Omarchy-Theme. **Community-Release**, Oberfläche zunächst Englisch.
 
-[![Version](assets/badges/version.svg)](https://github.com/PatrickIsenegger/omarchy-pangolin/releases)
-[![Lizenz](assets/badges/license.svg)](LICENSE)
-[![Hosting](assets/badges/hosting.svg)](docs/compatibility.md)
+<p align="center">
+  <a href="https://github.com/PatrickIsenegger/omarchy-pangolin/releases/latest"><img src="assets/badges/release.svg" alt="Release: 0.1.0"></a>
+  <a href="LICENSE"><img src="assets/badges/license.svg" alt="Lizenz: MIT"></a>
+  <a href="docs/compatibility.md"><img src="assets/badges/hosting.svg" alt="Hosting: Cloud und Self-Hosting"></a>
+  <a href="docs/graphics.md"><img src="assets/badges/theme.svg" alt="Stil: Omarchy-Theme"></a>
+</p>
+
+<p align="center">
+  <a href="README.md">English</a> ·
+  <a href="docs/README.md">Dokumentation</a> ·
+  <a href="docs/configuration.md">Konfiguration</a> ·
+  <a href="https://github.com/PatrickIsenegger/omarchy-pangolin/releases/latest">Aktuelles Release</a>
+</p>
 
 ![Theme-Vorschau mit erfundenen Ressourcen](assets/preview.png)
 
-Feine SVG-Farbflächen und ein atmendes Symbol beleben das Panel nur bei bestätigter Verbindung. Die Aquarell-Optik ist von [meiner Webseite](https://patrickisenegger.com) inspiriert; die Farben der Oberfläche folgen deinem Omarchy-Theme.
+Feine SVG-Farbflächen und ein atmendes Symbol beleben das Panel nur bei bestätigter Verbindung. Die Farben der Oberfläche folgen deinem Omarchy-Theme. [Artwork und Rendering](docs/graphics.md).
 
 Unabhängiges Community-Projekt. Sämtliche Beispiele und Vorschauen sind synthetisch.
 

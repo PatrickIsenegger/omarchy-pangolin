@@ -1,6 +1,6 @@
 # Artwork provenance
 
-The original `assets/watercolor-art.png` was generated with the built-in OpenAI Imagegen tool. `assets/readme-hero.png` adds exact typography; `assets/social-preview.png` adapts the title for repository sharing. No existing website illustration was copied. Direction: the paper, ink and restrained watercolor feel of [Patrick Isenegger's public website](https://patrickisenegger.com). This illustration is decorative community artwork, not an official Pangolin logo.
+The original `assets/watercolor-art.png` was generated with the built-in OpenAI Imagegen tool. `assets/readme-hero.png` adds exact typography; `assets/social-preview.png` adapts the title for repository sharing. This illustration is decorative community artwork, not an official Pangolin logo.
 
 ## Generation prompt
 

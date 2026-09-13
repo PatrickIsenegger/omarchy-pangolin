@@ -13,11 +13,11 @@ assert re.fullmatch(r'\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?',version)
 assert 'Version.current' in (root/'Dashboard.qml').read_text()
 assert ('var current = '+json.dumps(version)) in (root/'Version.js').read_text()
 assert version in (root/'CHANGELOG.md').read_text()
-assert version in (root/'assets/badges/version.svg').read_text()
+assert version in (root/'assets/badges/release.svg').read_text()
 for name in ['BarWidget.qml','Dashboard.qml','Mark.qml','Wash.qml','ResourceIcon.qml']:
     assert not re.search(r'#[0-9a-fA-F]{6}',(root/name).read_text()), 'Fixed production palette: '+name
 for p in root.rglob('*.md'):
-    for link in re.findall(r'\]\(([^)]+)\)',p.read_text()):
+    for link in re.findall(r'\]\(([^)]+)\)',p.read_text()) + re.findall(r'(?:href|src)=[\"\']([^\"\']+)[\"\']',p.read_text()):
         if '://' in link or link.startswith('#'):
             continue
         assert (p.parent/link.split('#')[0]).exists(), 'Missing documentation link: '+str(p)+': '+link
