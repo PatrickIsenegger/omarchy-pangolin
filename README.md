@@ -2,7 +2,7 @@
 
 A community bar plugin for Pangolin connections, public and private resources, and web apps. Follows your active Omarchy theme.
 
-**0.1.0-beta.2 · Community beta · English UI** · [Deutsch](README.de.md)
+**0.1.0-beta.3 · Community beta · English UI** · [Deutsch](README.de.md)
 
 ![Dark and light previews with synthetic demo resources](assets/preview.png)
 
@@ -16,7 +16,8 @@ Independent community project. Not an official Pangolin or Omarchy product. All 
 - Compact private-resource tiles; HTTP(S) links and host-address copying.
 - Install web resources as Omarchy web apps and open existing matching apps.
 - Theme colors for text, accents, surfaces and errors; no hardcoded product palette.
-- No status animation unless a connection is confirmed.
+- Theme-green connection dot; theme warning/error colors and a hollow unknown state.
+- Subtle SVG breathing in the bar only while a fresh connection is confirmed; the panel pulses on status samples.
 - HTTPS diagnosis, configuration shortcut and shell restart button.
 
 ## Requirements

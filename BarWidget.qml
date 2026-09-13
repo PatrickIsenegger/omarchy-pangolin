@@ -19,6 +19,8 @@ Ui.Panel {
   property double lastUpdate: 0
   property bool launching: false
   property string installing: ""
+  ThemePalette { id: palette }
+  readonly property color dotColor: stale ? Color.foreground : status.state === "connected" ? palette.success : status.state === "error" ? Color.urgent : status.state === "warning" ? palette.warning : palette.inactive
   readonly property bool busy: launching || operation.running
   readonly property bool healthy: !stale && status.state === "connected"
   readonly property bool loading: resourcePoll.running
@@ -104,7 +106,16 @@ Ui.Panel {
   BarIconButton {
     id: button
     anchors.fill: parent; bar: root.bar; text: "◇"; foreground: root.statusColor; interactive: true
-    iconComponent: Mark { ink: root.statusColor; connected: false }
+    iconComponent: Item {
+      Mark { anchors.fill: parent; ink: root.statusColor; connected: root.healthy; ambient: true }
+      Rectangle {
+        anchors.right: parent.right; anchors.bottom: parent.bottom
+        width: Math.max(6, Style.space(6)); height: width; radius: width / 2
+        color: root.stale || root.status.state === "unknown" ? Color.bar.background : root.dotColor
+        border.width: 1
+        border.color: root.stale || root.status.state === "unknown" ? root.dotColor : Color.bar.background
+      }
+    }
     tooltipText: root.opened ? "" : "Pangolin · " + root.title
     onPressed: function(b) { if (b === Qt.RightButton) root.run("dashboard"); else root.toggle() }
   }

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.0-beta.3 — 2026-09-13
+
+- Theme-derived semantic connection dot on the bar icon.
+- Original theme-tinted SVG with subtle connected-only breathing.
+- Stop and reset motion immediately on stale or disconnected status.
+
 ## 0.1.0-beta.2 — 2026-09-13
 
 - Explicit Cloud and self-hosted setup documentation and control-plane tests.

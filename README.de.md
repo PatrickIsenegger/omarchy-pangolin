@@ -1,6 +1,6 @@
 # Pangolin für Omarchy
 
-Community-Plugin für Verbindungen, öffentliche und private Ressourcen sowie Web-Apps. Die Oberfläche übernimmt das aktive Omarchy-Theme. **Version 0.1.0-beta.2**, Oberfläche zunächst Englisch.
+Community-Plugin für Verbindungen, öffentliche und private Ressourcen sowie Web-Apps. Die Oberfläche übernimmt das aktive Omarchy-Theme. **Version 0.1.0-beta.3**, Oberfläche zunächst Englisch.
 
 ![Theme-Vorschau mit erfundenen Ressourcen](assets/preview.png)
 
