@@ -23,6 +23,21 @@
 
 ![The real plugin UI in two demonstration themes; all resources are fictional](assets/preview.png)
 
+## What Pangolin does
+
+Pangolin provides controlled access to resources on remote networks. Public web resources can be reached through a browser; private resources use a Pangolin client connection. Administrators define the resources and who may access them. The Omarchy plugin adds connection controls and shortcuts to the resources your account can use. [Pangolin's explanation](https://docs.pangolin.net/about/how-pangolin-works).
+
+![Pangolin for Omarchy: account access, apps and web resources, and theme integration](assets/info-overview.png)
+
+<details>
+<summary>How access works and how to get started</summary>
+
+![Conceptual web and private access paths, followed by the three setup steps](assets/info-quickstart.png)
+
+These are illustrated guides. The screenshot above renders the actual plugin with synthetic data. Follow the [requirements and setup guide](docs/requirements.md) for installation details.
+
+</details>
+
 ## A small panel for everyday access
 
 | Connection | Resources | Your desktop |

@@ -26,6 +26,14 @@ Feine SVG-Farbflächen und ein atmendes Symbol beleben das Panel nur bei bestät
 
 Unabhängiges Community-Projekt. Sämtliche Beispiele und Vorschauen sind synthetisch.
 
+## Was Pangolin macht
+
+Pangolin ermöglicht kontrollierten Zugriff auf Ressourcen in entfernten Netzwerken. Öffentliche Web-Ressourcen lassen sich im Browser öffnen; private Ressourcen benötigen eine Pangolin-Client-Verbindung. Administratoren bestimmen, welche Ressourcen zugänglich sind und wer darauf zugreifen darf. Dieses Omarchy-Plugin bringt Verbindungssteuerung und Ressourcen-Verknüpfungen in die Leiste. [Offizielle Erklärung](https://docs.pangolin.net/about/how-pangolin-works).
+
+![Überblick über das Community-Plugin](assets/info-overview.png)
+
+[Grafik: Zugriffswege und erste Schritte](assets/info-quickstart.png)
+
 ## Installation
 
 Der Plugin-Befehl installiert keine Pangolin-CLI und keine Systempakete automatisch. Die [Voraussetzungen und Installationsschritte](docs/requirements.md) zeigen, was Omarchy mitbringt, welche Pakete gegebenenfalls fehlen und wie die CLI eingerichtet wird.

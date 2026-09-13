@@ -17,7 +17,7 @@ Keep the plugin code and releases in this repository. Submit a directory listing
 | Plugin ID | `community.pangolin` |
 | Category | `System` |
 | Tags | `bar`, `launcher`, `security` |
-| Preview | Root `preview.png`, rendered with synthetic resources |
+| Preview | Root `preview.png`, illustrated overview; actual UI screenshots in README |
 
 The ID and repository were not found in the public catalog during this check. Recheck before submitting; availability is not reserved by this document.
 

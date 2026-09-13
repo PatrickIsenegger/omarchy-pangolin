@@ -9,3 +9,5 @@ Preview images render this project's UI using synthetic data and demonstration p
 References: https://github.com/fosrl/pangolin and https://github.com/omacom/omarchy .
 
 The original watercolor banner was generated with OpenAI Imagegen and typeset for this project. It is not a Pangolin trademark or official mascot. See [artwork provenance](docs/artwork.md).
+
+The two information graphics were created with the built-in OpenAI Imagegen tool. They are conceptual community guides, not official Pangolin documentation or screenshots. Their prompts are recorded in [information graphic provenance](docs/info-graphics.md).
