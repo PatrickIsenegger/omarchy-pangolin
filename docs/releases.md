@@ -1,19 +1,25 @@
 # Releases
 
-The source of truth is `manifest.json.version`. Tags prefix that value with `v`; the panel's displayed version must match. The public release line begins with `0.1.0-beta.1`.
+Releases use simple SemVer numbers: **0.1.0**, **0.1.1**, **0.2.0**. New releases have no beta suffix and are published as regular GitHub Releases. Existing beta tags remain unchanged as historical snapshots.
 
-Use SemVer: `0.x` remains experimental. After `1.0.0`, PATCH fixes compatible behavior, MINOR adds compatible functionality, MAJOR changes the documented configuration/behavior contract incompatibly. Tag contents are immutable.
+`manifest.json.version` is the source of truth. Tags prefix the version with `v`. The version helper keeps the manifest, panel and README badge synchronized.
 
-`main` holds reviewed release commits because Omarchy's update command fetches the remote default branch and fast-forwards. Develop on feature branches. Before merging: run tests, validate QML/manifest, update the changelog and version, inspect the entire publishable tree for private data, and review demo assets. Then tag the release commit and publish matching GitHub release notes. A GitHub prerelease flag does not prevent updates from `main`.
+- PATCH (`0.1.1`): compatible fixes and refinements.
+- MINOR (`0.2.0`): new features. During `0.x`, documented breaking changes may appear in a minor release.
+- MAJOR (`1.0.0` and later): major milestones; after 1.0, incompatible changes increment the major version.
 
-To test or temporarily roll back to a known tag, first preserve any local changes, fetch tags in the installed plugin checkout, and check out that tag detached. Restart the shell. Do not use `omarchy plugin update` while intentionally pinned: it may advance to the default branch again. Return to the release branch deliberately when resuming updates. No destructive reset is needed.
+A regular release does not expand the [tested compatibility scope](compatibility.md). Published tags are immutable.
 
-Community registry submission follows initial beta feedback. Publishing the repository, a release or a registry entry is a separate action from preparing files.
-
-## Preparing the next version
+## Prepare a release
 
 ```bash
-python3 tools/bump_version.py 0.1.0-beta.7
+python3 tools/bump_version.py 0.1.1
 ```
 
-This updates the manifest, shared UI version and local README version badge together. Choose the actual next version, update `CHANGELOG.md`, regenerate previews, then run `python3 tools/check_release.py` and the documented checks. Beta numbers increase monotonically; published tags are never rewritten. The version badge links to GitHub Releases so readers can see release notes and prerelease status.
+Choose the actual next version, update the changelog, regenerate synthetic previews and run backend, QML, plugin and release checks. Inspect publishable files for private data before pushing. Publish the matching GitHub Release as the latest regular release.
+
+`main` holds reviewed release commits because Omarchy updates fetch the default branch and fast-forward; the updater does not select the newest GitHub Release. Develop changes on feature branches.
+
+## Roll back
+
+Preserve any local changes in the installed plugin checkout, fetch tags, then check out the desired tag detached and reload the shell. Do not run `omarchy plugin update` while intentionally pinned: it may advance to the default branch. Return deliberately to the release branch when resuming updates. No destructive reset is needed.

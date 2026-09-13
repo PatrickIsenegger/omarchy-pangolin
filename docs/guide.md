@@ -17,7 +17,7 @@ The **⋮ menu**, also available by right-clicking an enabled resource, offers o
 
 ## Connection
 
-**Green** confirms a local Pangolin connection. Individual sites may still connect on demand. **Yellow** means pending registration, a warning or unknown/stale status. **Red** means disconnected or a client error; the text distinguishes them. Colors follow the active theme. SVG motion runs only with a confirmed connection, and panel motion pauses when closed. Resource icons are static and never downloaded externally.
+**Green** confirms a local Pangolin connection. Individual sites may still connect on demand. **Orange** means pending registration, a warning or unknown/stale status. **Red** means disconnected or a client error; the text distinguishes them. These colors apply to the status dots; the icon and header keep the theme accent. Missing semantic colors are derived using theme-compatible saturation and lightness. Connection SVG motion runs only with a confirmed connection while the panel is open. Resource icons have a brief hover transform and are never downloaded externally.
 
 **Connect** starts Pangolin in a terminal for any required authentication or privileges. **Disconnect** stops the connection. Private resources require Pangolin and alias DNS. A host address does not imply HTTP(S); use [configuration](configuration.md) for explicit URLs.
 

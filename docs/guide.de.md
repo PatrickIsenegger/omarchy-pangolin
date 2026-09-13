@@ -18,10 +18,10 @@ Im **⋮-Menü** kannst du öffnen, die URL kopieren oder eine Web-App installie
 ## Verbindung und Farben
 
 - **Grün:** Der lokale Pangolin-Client bestätigt die Verbindung. Einzelne Sites können trotzdem erst bei Bedarf verbunden werden.
-- **Gelb:** Registrierung ausstehend, Warnung oder unbekannter/veralteter Status. Details prüfen.
+- **Orange:** Registrierung ausstehend, Warnung oder unbekannter/veralteter Status. Details prüfen.
 - **Rot:** Getrennt oder Client-Fehler. Die Beschriftung unterscheidet beide Fälle.
 
-Die Farben kommen aus deinem Omarchy-Theme. Symbol und Farbflächen bewegen sich nur bei bestätigter Verbindung; die Panel-Animation pausiert zusätzlich beim Schließen. Die Ressourcen-Symbole sind statische SVGs ohne externe Icon-Downloads.
+Die Statusfarben gelten für die Punkte; Icon und Kopfbereich folgen dem Theme-Akzent. Fehlende Statusfarben werden mit passender Helligkeit und Sättigung abgeleitet. Die Verbindungsanimation läuft nur bei bestätigter Verbindung und geöffnetem Panel. Ressourcen-Symbole reagieren kurz auf Hover; es gibt keine externen Icon-Downloads.
 
 **Connect** startet Pangolin in einem Terminal für nötige Anmeldung oder Berechtigungen. **Disconnect** beendet die Verbindung. Interne Ressourcen benötigen die Verbindung und funktionierendes Alias-DNS. Eine Host-Adresse ist nicht automatisch eine HTTP(S)-URL: siehe [Konfiguration](configuration.md).
 

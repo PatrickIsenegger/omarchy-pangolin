@@ -20,15 +20,15 @@
 | Connection | Resources | Your desktop |
 | --- | --- | --- |
 | Connect, disconnect and inspect local tunnel status. | Open public services and compact private-resource tiles. | Install resources as web apps, or open existing matching apps. |
-| Green means connected; yellow needs attention; red means disconnected or an error. | Copy a web URL or host address with one click. | Text, washes, accents and status colors follow Omarchy. |
+| Green means connected; orange needs attention; red means disconnected or an error. | Copy a web URL or host address with one click. | Text, washes, accents and status colors follow Omarchy. |
 
-The SVG symbol breathes and soft color washes drift while a fresh connection is confirmed. Disconnecting or losing status stops the motion; panel animations also pause when it closes. Quiet, readable controls remain available throughout.
+The SVG symbol breathes and soft color washes drift only while the panel is open and a fresh connection is confirmed. Closing the panel, disconnecting or losing status stops connection motion. A short resource-icon hover transition adds feedback without a repeating animation. Quiet, readable controls remain available throughout.
 
-**Community beta · English interface.** Independent of Pangolin and Omarchy. All screenshots and examples use synthetic resources. The watercolor title artwork takes its visual direction from [my website](https://patrickisenegger.com); the desktop interface uses your theme's colors. [Artwork and rendering](docs/graphics.md).
+**Community release · English interface.** Independent of Pangolin and Omarchy. All screenshots and examples use synthetic resources. The watercolor title artwork takes its visual direction from [my website](https://patrickisenegger.com); the desktop interface uses your theme's colors. [Artwork and rendering](docs/graphics.md).
 
 ## Requirements
 
-Omarchy Quattro with the Quickshell plugin API (`Color.popups`, `Ui.Panel`, `KeyboardPanel`), Python 3.10+, and the Pangolin CLI with a readable local OLM socket. Resource discovery requires the launcher API and an existing CLI account.
+Omarchy Quattro with the Quickshell plugin API (`Color.popups`, `Ui.Panel`, `KeyboardPanel`), Python 3.10+, and the Pangolin CLI with a readable local OLM socket. Resource discovery requires the launcher API and an existing CLI account. The plugin installer does not install the Pangolin CLI or other system dependencies; see the complete [requirements](docs/requirements.md).
 
 Runtime commands: `python3`, `timeout`, `pangolin`, `omarchy`, `chromium`, `gtk-launch`, `wl-copy`, `xdg-open`, and optionally `notify-send`. The plugin uses Python's standard library; no pip packages are required. See [compatibility](docs/compatibility.md) for the test scope.
 
@@ -37,6 +37,8 @@ Runtime commands: `python3`, `timeout`, `pangolin`, `omarchy`, `chromium`, `gtk-
 ```bash
 omarchy plugin add https://github.com/PatrickIsenegger/omarchy-pangolin.git --enable
 ```
+
+This installs and enables the plugin checkout only. Install the [official Pangolin CLI](https://docs.pangolin.net/manage/clients/install-client), then run `pangolin login` and `pangolin up` separately. Use the [requirements and read-only checks](docs/requirements.md) to verify the local commands and OLM socket.
 
 For a local source checkout:
 
@@ -49,16 +51,18 @@ omarchy plugin add /path/to/omarchy-pangolin --enable
 Both are supported through the active CLI account. For Pangolin Cloud:
 
 ```bash
-pangolin login app.pangolin.net
+pangolin login
 ```
 
 For a self-hosted server:
 
 ```bash
-pangolin login https://gateway.example.com
+pangolin login
 ```
 
-Select your organization using the CLI. When using several accounts, use `pangolin select account` and reopen the panel to refresh resources. The plugin uses the session API on the selected dashboard host, not the separate integration API at `api.pangolin.net`. You do not need a new integration API key.
+Choose the Cloud or self-hosted server in the CLI login flow.
+
+Select your organization using the CLI. When using several accounts, select the required organization with the CLI (for example, `pangolin select org --org <org-id>`) and reopen the panel to refresh resources. The plugin uses the session API on the selected dashboard host, not the separate integration API at `api.pangolin.net`. You do not need a new integration API key.
 
 Cloud and self-hosted account/request handling are covered by synthetic tests. Authenticated Cloud end-to-end testing still needs a Cloud account.
 
@@ -74,7 +78,7 @@ Resources use a compact single-line layout: a **checked window** identifies an i
 
 Left-click a resource to open it (or copy an address-only host). The **⋮ menu**, also available by right-click, contains opening, copying and app installation. **? Help** in the panel opens the [user guide](docs/README.md). Left-click the bar icon to toggle the panel; right-click the bar icon opens the account dashboard.
 
-The header uses theme green for a confirmed connection, yellow for pending/unknown states and warnings, and red for disconnected/error states.
+The icon and header follow the theme accent. Connection dots show green for confirmed connections, orange for pending/unknown states and warnings, and red for disconnected/error states. Semantic colors use the theme palette or matching saturation and lightness when a theme lacks suitable colors.
 
 Private resources need an active Pangolin connection and working alias DNS. A host resource is not necessarily a web service: configure a full URL or a known scheme under [settings](docs/configuration.md). A TCP allowlist alone does not identify HTTP versus HTTPS.
 

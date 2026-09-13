@@ -19,8 +19,8 @@ Ui.Panel {
   property double lastUpdate: 0
   property bool launching: false
   property string installing: ""
-  ThemePalette { id: palette }
-  readonly property color dotColor: stale || launching || status.state === "unknown" || status.state === "warning" ? palette.warning : status.state === "connected" ? palette.success : Color.urgent
+  ThemePalette { id: themePalette }
+  readonly property color dotColor: stale || launching || status.state === "unknown" || status.state === "pending" || status.state === "warning" ? themePalette.warning : status.state === "connected" ? themePalette.success : themePalette.error
   readonly property bool busy: launching || operation.running
   readonly property bool healthy: !stale && status.state === "connected"
   readonly property bool loading: resourcePoll.running
@@ -106,15 +106,15 @@ Ui.Panel {
   }
   BarIconButton {
     id: button
-    anchors.fill: parent; bar: root.bar; text: "◇"; foreground: root.statusColor; interactive: true
+    anchors.fill: parent; bar: root.bar; text: "◇"; foreground: Color.accent; interactive: true
     iconComponent: Item {
-      Mark { anchors.fill: parent; ink: root.statusColor; connected: root.healthy; ambient: true }
+      Mark { anchors.fill: parent; ink: Color.accent; connected: root.healthy && root.opened; ambient: true }
       Rectangle {
         anchors.right: parent.right; anchors.bottom: parent.bottom
         width: Math.max(6, Style.space(6)); height: width; radius: width / 2
-        color: root.stale || root.status.state === "unknown" ? Color.bar.background : root.dotColor
+        color: root.dotColor
         border.width: 1
-        border.color: root.stale || root.status.state === "unknown" ? root.dotColor : Color.bar.background
+        border.color: Color.bar.background
       }
     }
     tooltipText: root.opened ? "" : "Pangolin · " + root.title

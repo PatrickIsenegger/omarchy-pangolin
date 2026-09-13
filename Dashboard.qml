@@ -34,24 +34,24 @@ FocusScope {
       Rectangle {
         width: parent.width; height: Style.space(100); radius: Style.space(12)
         color: Qt.rgba(view.ink.r, view.ink.g, view.ink.b, 0.025)
-        border.color: Qt.rgba(control.statusColor.r, control.statusColor.g, control.statusColor.b, 0.3)
+        border.color: Qt.rgba(view.accent.r, view.accent.g, view.accent.b, 0.3)
         clip: true
-        Wash { anchors.fill: parent; anchors.margins: -Style.space(12); pigment: control.statusColor; shade: control.statusColor; moving: control.healthy && control.opened }
+        Wash { anchors.fill: parent; anchors.margins: -Style.space(12); pigment: view.accent; shade: view.accent; moving: control.healthy && control.opened }
         HoverHandler { id: statusHover }
-        ToolTip { visible: statusHover.hovered; delay: 550; padding: Style.space(8); text: view.statusHint; contentItem: Label { text: view.statusHint; width: Style.space(290); wrapMode: Text.WordWrap } background: Rectangle { color: Qt.rgba(view.tooltipSurface.r, view.tooltipSurface.g, view.tooltipSurface.b, 1); radius: 8; border.color: control.statusColor } }
+        ToolTip { visible: statusHover.hovered; delay: 550; padding: Style.space(8); text: view.statusHint; contentItem: Label { text: view.statusHint; width: Style.space(290); wrapMode: Text.WordWrap } background: Rectangle { color: Qt.rgba(view.tooltipSurface.r, view.tooltipSurface.g, view.tooltipSurface.b, 1); radius: 8; border.color: view.accent } }
         RowLayout {
           anchors.fill: parent; anchors.margins: Style.space(12); spacing: Style.space(12)
           Item {
             Layout.preferredWidth: Style.space(56); Layout.preferredHeight: Style.space(64)
-            Rectangle { anchors.centerIn: parent; width: Style.space(53); height: width; radius: width/2; color: "transparent"; border.color: Qt.rgba(control.statusColor.r, control.statusColor.g, control.statusColor.b, 0.22) }
-            Mark { id: mark; anchors.centerIn: parent; width: Style.space(40); height: width; ink: control.statusColor; connected: control.healthy && control.opened; ambient: true }
-            Rectangle { width: Style.space(6); height: width; radius: width/2; x: Style.space(43); y: Style.space(7); color: control.stale || control.status.state === "unknown" ? "transparent" : control.dotColor; border.width: 1; border.color: control.dotColor }
+            Rectangle { anchors.centerIn: parent; width: Style.space(53); height: width; radius: width/2; color: "transparent"; border.color: Qt.rgba(view.accent.r, view.accent.g, view.accent.b, 0.22) }
+            Mark { id: mark; anchors.centerIn: parent; width: Style.space(40); height: width; ink: view.accent; connected: control.healthy && control.opened; ambient: true }
+            Rectangle { width: Style.space(6); height: width; radius: width/2; x: Style.space(43); y: Style.space(7); color: control.dotColor; border.width: 1; border.color: Color.popups.background }
           }
           Column {
             Layout.fillWidth: true; Layout.minimumWidth: 0; spacing: 3
             Label { text: "YOUR CONNECTIONS"; color: view.muted; font.pixelSize: Style.font.caption - 3; font.letterSpacing: 1.4 }
-            Label { text: "Pangolin"; font.family: "serif"; font.pixelSize: Style.font.body + 12 }
-            Label { width: parent.width; text: (control.healthy ? "●  " : "◇  ") + control.title; color: control.statusColor; elide: Text.ElideRight }
+            Label { text: "Pangolin"; color: view.accent; font.family: "serif"; font.pixelSize: Style.font.body + 12 }
+            Label { width: parent.width; text: control.title; color: view.ink; elide: Text.ElideRight }
           }
           Action { text: "×"; Accessible.name: "Close panel"; hint: "Close panel · Esc"; onClicked: control.close() }
         }
@@ -122,7 +122,13 @@ FocusScope {
           hint: view.resourceHint(tile.modelData)
           contentItem: RowLayout {
             spacing: Style.space(6)
-            ResourceIcon { Layout.preferredWidth: Style.space(18); Layout.preferredHeight: Style.space(18); ink: tile.tint; installed: !!tile.modelData.appInstalled; web: !!tile.modelData.url }
+            Item {
+              id: resourceIconFrame
+              Layout.preferredWidth: Style.space(18); Layout.preferredHeight: Style.space(18)
+              ResourceIcon { anchors.fill: parent; ink: tile.tint; installed: !!tile.modelData.appInstalled; web: !!tile.modelData.url }
+              Behavior on scale { NumberAnimation { duration: 140; easing.type: Easing.OutCubic } }
+              scale: resourceButton.hovered ? 1.08 : 1
+            }
             Label { Layout.fillWidth: true; Layout.minimumWidth: 0; text: tile.modelData.name; font.pixelSize: Style.font.caption - (grid.compact ? 1 : 0); elide: Text.ElideRight }
           }
           onClicked: control.openResource(tile.modelData)

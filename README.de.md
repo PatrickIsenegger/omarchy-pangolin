@@ -2,7 +2,7 @@
 
 # Pangolin für Omarchy
 
-Community-Plugin für Verbindungen, öffentliche und private Ressourcen sowie Web-Apps. Die Oberfläche übernimmt das aktive Omarchy-Theme. **Community-Beta**, Oberfläche zunächst Englisch.
+Community-Plugin für Verbindungen, öffentliche und private Ressourcen sowie Web-Apps. Die Oberfläche übernimmt das aktive Omarchy-Theme. **Community-Release**, Oberfläche zunächst Englisch.
 
 [![Version](assets/badges/version.svg)](https://github.com/PatrickIsenegger/omarchy-pangolin/releases)
 [![Lizenz](assets/badges/license.svg)](LICENSE)
@@ -16,6 +16,8 @@ Unabhängiges Community-Projekt. Sämtliche Beispiele und Vorschauen sind synthe
 
 ## Installation
 
+Der Plugin-Befehl installiert keine Pangolin-CLI und keine Systempakete automatisch. Die [Voraussetzungen und Installationsschritte](docs/requirements.md) zeigen, was Omarchy mitbringt, welche Pakete gegebenenfalls fehlen und wie die CLI eingerichtet wird.
+
 ```bash
 omarchy plugin add https://github.com/PatrickIsenegger/omarchy-pangolin.git --enable
 ```
@@ -28,9 +30,9 @@ Die kompakte Ressourcenliste zeigt nur Symbol und Name: Fenster mit Häkchen = i
 
 Linksklick öffnet die Ressource. Das **⋮-Menü** (auch per Rechtsklick) enthält Kopieren und App-Installation. **? Help** im Panel führt zur [Dokumentation](docs/README.md). Interne Dienste benötigen die Pangolin-Verbindung und Alias-DNS; für Host-Webdienste gegebenenfalls eine vollständige URL konfigurieren.
 
-Oben steht Grün für verbunden, Gelb für ausstehend/unbekannt oder Warnung und Rot für getrennt/Fehler – jeweils aus dem Theme.
+Icon und Kopfbereich folgen der Theme-Akzentfarbe. Der Statuspunkt zeigt Grün für verbunden, Orange für ausstehend/unbekannt oder Warnung und Rot für getrennt/Fehler. Fehlende Statusfarben werden passend zur Helligkeit und Sättigung des Themes abgeleitet.
 
-„Restart shell“ startet die gesamte Omarchy-Leiste mit ihren Plugins neu; die VPN-Verbindung bleibt bestehen. Ohne bestätigte Verbindung gibt es keine Statusanimation.
+„Restart shell“ startet die gesamte Omarchy-Leiste mit ihren Plugins neu; die VPN-Verbindung bleibt bestehen. Die Statusanimation läuft nur bei bestätigter Verbindung und geöffnetem Panel. Ressourcen-Symbole reagieren mit einer kurzen Bewegung auf Hover.
 
 Der Zahnradknopf öffnet die lokale Konfiguration außerhalb des Git-Checkouts. Zugangsdaten gehören dort nicht hinein. Der Demo-Modus verwendet erfundene Daten, greift nicht auf Konten zu und deaktiviert Aktionen.
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0 — 2026-09-13
+
+- Document the installation boundary, official CLI setup, dependency checks and Arch package mapping.
+- Begin regular numbered releases without beta suffixes; historical prerelease tags stay unchanged.
+- Separate theme-accent icon/header styling from green/orange/red connection dots.
+- Limit connection motion to confirmed connections while the panel is open; add a short resource hover transform.
+- Keep semantic status colors distinguishable even when the theme lacks named status colors.
+
 ## 0.1.0-beta.6 — 2026-09-13
 
 - Compact, single-line resources identified by window, globe or copy SVGs; flat app tiles replace resource watercolor fills and secondary labels.

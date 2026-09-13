@@ -8,6 +8,7 @@ A small community plugin for Pangolin connections, resources and web apps.
 
 | Reference | What you will find |
 | --- | --- |
+| [Requirements](requirements.md) | Required commands, Pangolin CLI setup and read-only checks |
 | [Configuration](configuration.md) | Private web URLs, protocol overrides and account-scoped settings |
 | [Compatibility](compatibility.md) | Omarchy requirements, Pangolin Cloud and self-hosted support, test scope |
 | [Troubleshooting](troubleshooting.md) | Connection, DNS, resource and app problems |

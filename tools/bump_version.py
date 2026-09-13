@@ -6,8 +6,8 @@ import re
 import sys
 root=Path(__file__).resolve().parents[1]
 version=sys.argv[1] if len(sys.argv)==2 else ''
-if not re.fullmatch(r'\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?',version):
-    sys.exit('Usage: python tools/bump_version.py X.Y.Z[-prerelease]')
+if not re.fullmatch(r'\d+\.\d+\.\d+',version):
+    sys.exit('Usage: python tools/bump_version.py X.Y.Z')
 p=root/'manifest.json';data=json.loads(p.read_text());data['version']=version;p.write_text(json.dumps(data,indent=2)+'\n')
 (root/'Version.js').write_text('.pragma library\n// Generated from manifest.json by tools/bump_version.py.\nvar current = '+json.dumps(version)+'\n')
 badge=root/'assets/badges/version.svg'

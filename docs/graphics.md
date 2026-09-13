@@ -12,6 +12,6 @@ QT_QPA_PLATFORM=offscreen QT_QPA_PLATFORMTHEME=generic QT_QUICK_CONTROLS_STYLE=B
 
 Set `light: true` in the preview harness for the light variant, then restore it. Fixed demonstration palette colors belong only in preview assets/tools; production QML uses the active theme.
 
-A short walkthrough recording can be added after real-world beta testing. Never record an authenticated account for publication.
+A short walkthrough recording can be added after further real-world testing. Never record an authenticated account for publication.
 
 `Wash.qml` builds original translucent SVG shapes from theme colors. Only SVG transforms animate; hidden panels and unconfirmed connections stop and reset movement. The production UI contains no fixed watercolor palette. README artwork and badges use a fixed paper, blue-gray and burgundy palette for GitHub presentation. [Artwork provenance](artwork.md).
