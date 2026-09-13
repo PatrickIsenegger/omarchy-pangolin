@@ -70,7 +70,7 @@ Cloud and self-hosted account/request handling are covered by synthetic tests. A
 
 The plugin uses that active account. Connect from the panel; any privilege prompt is handled by Pangolin in a terminal. Nothing connects automatically on installation.
 
-The plugin ID is `patrick.pangolin`. Omarchy will not overwrite an existing installation with that ID. Back up an existing custom copy and its configuration before migrating; do not delete it blindly.
+The plugin ID is `community.pangolin`. **Updating an older `patrick.pangolin` installation? Follow the [one-time migration](docs/migration.md) to preserve its position and settings.** Omarchy will not overwrite an existing installation with that ID. Back up an existing custom copy and its configuration before migrating; do not delete it blindly.
 
 ## Use
 
@@ -93,8 +93,8 @@ Demo mode uses only generated data and disables actions. Enable the widget's `de
 ## Update and remove
 
 ```bash
-omarchy plugin update patrick.pangolin
-omarchy plugin remove patrick.pangolin
+omarchy plugin update community.pangolin
+omarchy plugin remove community.pangolin
 ```
 
 The Omarchy updater follows the repository's default branch, not the newest GitHub Release. `main` is reserved for reviewed release commits. See [releases and rollback](docs/releases.md).

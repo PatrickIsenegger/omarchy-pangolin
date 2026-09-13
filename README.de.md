@@ -24,6 +24,8 @@ omarchy plugin add https://github.com/PatrickIsenegger/omarchy-pangolin.git --en
 
 Pangolin-CLI installieren. Für Pangolin Cloud mit `pangolin login app.pangolin.net`, für Self-Hosting mit `pangolin login https://gateway.example.com` anmelden und eine Organisation auswählen. Beide Varianten werden über das aktive CLI-Konto unterstützt. Cloud ist mit synthetischen Tests abgedeckt; ein echter Cloud-End-to-End-Test steht noch aus. Das Plugin verwendet das aktive CLI-Konto. Eine bereits vorhandene Installation mit derselben ID vor einer Migration sichern.
 
+Eine bestehende Installation mit der alten Kennung wird über die [einmalige Migration](docs/migration.md) umgestellt; Position und Einstellungen bleiben erhalten.
+
 ## Bedienung
 
 Die kompakte Ressourcenliste zeigt nur Symbol und Name: Fenster mit Häkchen = installierte App, Globus = Browser-Link, überlappende Blätter = Host-Adresse kopieren. Apps erhalten eine dezente, flache Tönung. Hover-Infos erklären Ziel und Voraussetzungen.
@@ -37,8 +39,8 @@ Icon und Kopfbereich folgen der Theme-Akzentfarbe. Der Statuspunkt zeigt Grün f
 Der Zahnradknopf öffnet die lokale Konfiguration außerhalb des Git-Checkouts. Zugangsdaten gehören dort nicht hinein. Der Demo-Modus verwendet erfundene Daten, greift nicht auf Konten zu und deaktiviert Aktionen.
 
 ```bash
-omarchy plugin update patrick.pangolin
-omarchy plugin remove patrick.pangolin
+omarchy plugin update community.pangolin
+omarchy plugin remove community.pangolin
 ```
 
 Updates folgen dem Standardbranch. Lokale Einstellungen und installierte Web-Apps bleiben beim Entfernen bestehen. Weitere Angaben zu Abhängigkeiten, Datenzugriff, Tests und Konfiguration stehen in der [englischen README](README.md).

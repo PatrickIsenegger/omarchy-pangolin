@@ -7,7 +7,7 @@ import qs.Ui as Ui
 
 Ui.Panel {
   id: root
-  moduleName: "patrick.pangolin"
+  moduleName: "community.pangolin"
   manageIpc: false
   readonly property bool demo: setting("demo", false)
   readonly property string helper: Qt.resolvedUrl("backend.py").toString().replace(/^file:\/\//, "")

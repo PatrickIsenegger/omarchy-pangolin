@@ -12,6 +12,7 @@ A small community plugin for Pangolin connections, resources and web apps.
 | [Configuration](configuration.md) | Private web URLs, protocol overrides and account-scoped settings |
 | [Compatibility](compatibility.md) | Omarchy requirements, Pangolin Cloud and self-hosted support, test scope |
 | [Troubleshooting](troubleshooting.md) | Connection, DNS, resource and app problems |
+| [Plugin ID migration](migration.md) | Move an older installation to `community.pangolin` |
 | [Releases and rollback](releases.md) | Versions, updates and choosing a previous release |
 | [Changelog](../CHANGELOG.md) | Changes in each version |
 

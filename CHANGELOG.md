@@ -3,6 +3,7 @@
 ## 0.1.0 — 2026-09-13
 
 - Document the installation boundary, official CLI setup, dependency checks and Arch package mapping.
+- Rename the technical plugin ID to `community.pangolin`; existing users should follow the migration guide.
 - Begin regular numbered releases without beta suffixes; historical prerelease tags stay unchanged.
 - Separate theme-accent icon/header styling from green/orange/red connection dots.
 - Limit connection motion to confirmed connections while the panel is open; add a short resource hover transform.
