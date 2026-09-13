@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "accounts": {
+    "https://gateway.example.com": {
+      "demo": {
+        "webUrls": {"site:1": "http://wiki.internal:8080/"},
+        "hostSchemes": {"metrics.internal": "http"}
+      }
+    }
+  }
+}

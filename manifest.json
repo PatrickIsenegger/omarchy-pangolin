@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "patrick.pangolin",
+  "name": "Pangolin for Omarchy",
+  "version": "0.1.0-beta.1",
+  "author": "PatrickIsenegger",
+  "description": "Community Pangolin connections, resources and web apps. Follows your Omarchy theme.",
+  "kinds": ["bar-widget"],
+  "entryPoints": {"barWidget": "BarWidget.qml"},
+  "barWidget": {
+    "displayName": "Pangolin", "category": "Network", "allowMultiple": false,
+    "defaultSection": "right", "defaults": {"demo": false},
+    "schema": [{"key": "demo", "type": "bool", "label": "Demo mode (no account or network access)"}]
+  }
+}
