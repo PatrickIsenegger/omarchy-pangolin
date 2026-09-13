@@ -17,7 +17,7 @@ Keep the plugin code and releases in this repository. Submit a directory listing
 | Plugin ID | `community.pangolin` |
 | Category | `System` |
 | Tags | `bar`, `launcher`, `system` |
-| Preview | Root `preview.png`, illustrated overview; actual UI screenshots in README |
+| Preview | Root `preview.png`, actual interface in dark/light demo themes with synthetic resources |
 
 Suggested missing tag: **connectivity**. It describes remote network access and connection state; this plugin is not a general metrics or availability-monitoring dashboard. The current marketplace tag vocabulary does not include connectivity or monitoring. Its Explore graph includes a Network & VPN group derived from names, descriptions and tags. [Explorer implementation](https://github.com/omacom/omarchy-plugin-marketplace/blob/main/scripts/build-explorer-data.mjs).
 

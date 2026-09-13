@@ -16,4 +16,4 @@ A short walkthrough recording can be added after further real-world testing. Nev
 
 `Wash.qml` builds original translucent SVG shapes from theme colors. Only SVG transforms animate; hidden panels and unconfirmed connections stop and reset movement. The production UI contains no fixed watercolor palette. README artwork and badges use a fixed paper, blue-gray and burgundy palette for GitHub presentation. [Artwork provenance](artwork.md).
 
-`assets/info-overview.png` introduces the plugin; `assets/info-quickstart.png` explains Pangolin access and setup. These are illustrated information graphics, not UI screenshots. Root `preview.png` uses the overview for the marketplace. [Generation prompts](info-graphics.md).
+`assets/info-overview.png` introduces the plugin; `assets/info-quickstart.png` explains Pangolin access and setup. These are illustrated information graphics, not UI screenshots. Root `preview.png` uses the same real-interface dark/light demo as `assets/preview.png` for the marketplace. All displayed resources are synthetic; the illustrated guides stay in the README. [Generation prompts](info-graphics.md).
